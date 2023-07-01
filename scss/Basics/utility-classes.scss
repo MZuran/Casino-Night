@@ -1,3 +1,4 @@
+//FLEXBOX
 .flex-dir-row {
     display: flex;
     flex-direction: row;
@@ -13,10 +14,33 @@
     justify-content: center;
 }
 
-.centered-text h1 {
+//TEXT
+.text-align-left {
+    text-align: left;
+}
+
+.centered-text-children h1 {
     text-align: center;
 }
 
-.centered-text p {
+.centered-text-children h2 {
     text-align: center;
+}
+
+.centered-text-children p {
+    text-align: center;
+}
+
+//SPACING
+.margin-children p {
+    margin: 10px;
+}
+
+.margin-children {
+    margin: 10px;
+}
+
+//SIZE
+.max-width-50 {
+    max-width: 50%;
 }

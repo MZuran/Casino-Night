@@ -8,15 +8,59 @@
   </head>
   <body>
     <main class="index-home flex-dir-column absolute-center">
-      <div class="centered-text flex-dir-column absolute-center">
-        <h1>¡Abrí la consola para empezar!</h1>
+      <div class="flex-dir-column absolute-center margin-children max-width-50">
+        <div class="centered-text-children">
+          <h1>¡Abrí la consola para empezar!</h1>
+          <p>
+            ¡Bienvenidos al Casino de Matías Zuran!
+            <br />
+            En esta página simularemos diferentes juegos de azar, ya sea con
+            cartas, dados, monedas, ruleta u cualquier otro sistema.
+            <br />
+            Por ahora, la entrada y salida de los juegos se manejan mediante
+            consola, pero pienso cambiar eso una vez que el curso me dé las
+            herramientas necesarias para hacerlo.
+            <br />
+          </p>
+          <h2>¿Cómo Jugar?</h2>
+          <p>
+            <b class="hilight-red">singleNumberBet(</b>
+            Dinero
+            <b class="hilight-red">,</b>
+            Número
+            <b class="hilight-red">,</b>
+            Cantidad
+            <b class="hilight-red">)</b>
+          </p>
+
+        </div>
+
         <p>
-          ¡Bienvenidos al Casino de Matías Zuran!
+          Las reglas son simples; Para los propósitos de esta demostración,
+          simularemos una apuesta a un único número de un juego de ruleta
+          estándar. La tasa de retorno para este tipo de apuestas es 1 a 35, o
+          sea, en el caso de ganar el jugador obtendrá 35 veces el número
+          apostado.
           <br />
-          En esta página simularemos diferentes juegos de azar, ya sea con
-          cartas, dados, monedas, ruleta u cualquier otro sistema.
           <br />
-          Por ahora, la entrada y salida de los juegos se manejan mediante consola, pero pienso cambiar eso una vez que el curso me dé las herramientas necesarias para hacerlo.
+          Para apostar, todo lo que hay que hacer es escribir en consola en
+          comando en rojo reemplazando Dinero y Número por un respectivo valor.
+          <b>Dinero</b>
+          es la cantidad que el jugador esté dispuesto a apostar.
+          <b>Número</b>
+          debe ser el número al cual el jugador está apostando que salga en la
+          ruleta. (Sólo existen números desde el 0 hasta el 36). El jugador
+          comienza el juego con 1000$.
+          <br />
+          <br />
+          <b>Cantidad</b>
+          es un valor
+          <i>opcional</i>
+          que puede estar en la función o no estar. Simplemente dicta cuántas
+          veces se repite la misma apuesta. En el caso de no haber sido
+          ingresado, la apuesta se realizará una sóla vez. Cabe destacar que en
+          el caso de elegir no indicar cantidad, se debe ingresar
+          singleNumberBet(Dinero,Número).
         </p>
       </div>
     </main>

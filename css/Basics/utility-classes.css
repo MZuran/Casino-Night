@@ -13,12 +13,32 @@
   justify-content: center;
 }
 
-.centered-text h1 {
+.text-align-left {
+  text-align: left;
+}
+
+.centered-text-children h1 {
   text-align: center;
 }
 
-.centered-text p {
+.centered-text-children h2 {
   text-align: center;
+}
+
+.centered-text-children p {
+  text-align: center;
+}
+
+.margin-children p {
+  margin: 10px;
+}
+
+.margin-children {
+  margin: 10px;
+}
+
+.max-width-50 {
+  max-width: 50%;
 }
 
 /*# sourceMappingURL=utility-classes.css.map */
