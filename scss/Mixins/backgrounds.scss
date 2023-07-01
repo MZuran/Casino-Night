@@ -1,6 +1,6 @@
 @mixin bg-playing-cards($color, $size) {
     background-color: $color;
-    background-image: url('../../media/backgrounds/playing-symbols-very-transparent.png');
+    background-image: url('./../media/backgrounds/playing-symbols-very-transparent.png');
     background-size: $size;
     //background-position: $position;
   }
