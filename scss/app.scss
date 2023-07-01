@@ -1,3 +1,15 @@
 //Basics
 @import './Basics/colors.scss';
 @import './Basics/fonts.scss';
+@import './Basics/reset.scss';
+@import './Basics/utility-classes.scss';
+
+//Mixins
+@import './Mixins/backgrounds.scss';
+
+//Components
+@import './Components/footer.scss';
+@import './Components/header.scss';
+
+//Pages
+@import './Pages/index.scss';

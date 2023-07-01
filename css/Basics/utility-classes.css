@@ -1,0 +1,24 @@
+.flex-dir-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-dir-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.absolute-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.centered-text h1 {
+  text-align: center;
+}
+
+.centered-text p {
+  text-align: center;
+}
+
+/*# sourceMappingURL=utility-classes.css.map */

@@ -1,0 +1,5 @@
+.index-home {
+    width: 100%;
+    height: 100%;
+    @include bg-playing-cards($color-1, 10%);
+};
