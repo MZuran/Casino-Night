@@ -76,10 +76,17 @@
   justify-content: center;
   align-items: center;
 }
-
 .roulette-container p {
   font-family: "font-3", sans-serif;
   font-size-adjust: inherit;
+}
+
+.invisible-container {
+  color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+}
+.invisible-container p {
+  color: rgba(0, 0, 0, 0);
 }
 
 .roulette-square {

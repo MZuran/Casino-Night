@@ -8,11 +8,19 @@
 
     justify-content: center;
     align-items: center;
+
+    & p {
+        font-family: 'font-3', sans-serif;
+        font-size-adjust: inherit;
+    }
 }
 
-.roulette-container p {
-    font-family: 'font-3', sans-serif;
-    font-size-adjust: inherit;
+.invisible-container {
+    color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    & p {
+        color: rgba(0, 0, 0, 0);
+    }
 }
 
 .roulette-square {

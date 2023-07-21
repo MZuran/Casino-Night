@@ -49,6 +49,10 @@ let betList = []
 const roulette = {
   validColorList: ['rojo', 'negro', 'verde', 'red', 'black', 'green'],
 
+  redColorList: [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36],
+
+  blackColorList: [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35],
+
   //Helper roulette functions
   validColor: function (color) {
     //color = prompt()
@@ -89,11 +93,12 @@ const roulette = {
   color: function (rouletteNumber) {
     if (rouletteNumber == 0) {
       return 'green'
-    } else if (rouletteNumber % 2 === 0) {
-      return 'black'
-    } else if (!(rouletteNumber % 2 === 0)) {
+    } else if (this.redColorList.includes(rouletteNumber)) {
       return 'red'
+    } else if (this.blackColorList.includes(rouletteNumber)) {
+      return 'black'
     }
+
     alert('Error en roulette.color()')
     console.log('Error en roulette.color()')
     return 'error'
@@ -123,13 +128,13 @@ const roulette = {
       alert(
         `La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ al número ${bettedNumber} ganó $ ${
           bettedAmount * 35
-        }`,
+        }!`,
       )
       bettedAmount = bettedAmount * 36
       playerMoney = playerMoney + bettedAmount
     } else {
       alert(
-        `La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ al número ${bettedNumber} perdió`,
+        `La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ al número ${bettedNumber} perdió!`,
       )
     }
   },
@@ -142,12 +147,12 @@ const roulette = {
       alert(
         `La bola cae en ${landedColor}\n¡La apuesta de ${bettedAmount}$ al color ${bettedColor} ganó $ ${
           bettedAmount * 2
-        }`,
+        }!`,
       )
       playerMoney = playerMoney + bettedAmount * 3
     } else {
       alert(
-        `La bola cae en ${landedColor}\n¡La apuesta de ${bettedAmount}$ al color ${bettedColor} perdió`,
+        `La bola cae en ${landedColor}\n¡La apuesta de ${bettedAmount}$ al color ${bettedColor} perdió!`,
       )
     }
   },
@@ -166,7 +171,7 @@ const roulette = {
       alert(
         `La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ a la ${bettedDozen}º docena ganó $ ${
           bettedAmount * 2
-        }`,
+        }!`,
       )
       playerMoney = playerMoney + bettedAmount * 3
     } else {
