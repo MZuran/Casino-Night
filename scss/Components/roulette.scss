@@ -1,0 +1,37 @@
+.roulette-container {
+    border-style: solid;
+    border-width: 2px;
+    border-color: $color-white;
+    flex-direction: row;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.roulette-container p {
+    font-family: 'font-3', sans-serif;
+    font-size-adjust: inherit;
+}
+
+.roulette-square {
+    width: 2.5vw;
+    height: 2.5vw;
+
+    font-family: 'font-3', sans-serif;
+    font-size-adjust: inherit;
+}
+
+.red-square {
+    background-color: $color-red;
+}
+
+.black-square {
+    background-color: $color-black;
+}
+
+.green-square {
+    background-color: $color-green;
+    height: calc(#{7.5}vw + #{6}px);
+}

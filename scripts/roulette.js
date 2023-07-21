@@ -1,7 +1,7 @@
 //************************************************* Programmer's Thought Log *************************************************
 /*
  PLAN ABOUT HOW WOULD THIS IDEALLY WORK:
- The player will make a number of bets based on color (Done), column, rows, number (Done) or dozens.
+ The player will make a number of bets based on color (Done), column, rows, number (Done) or dozens (Done).
  These bets will be saved somewhere with all the necessary paremeters. Maybe an array will work? (It did)
  Once the player is done placing bets, he will call for a function to spin the roulette wheel which will return a single result.
  This result will be the final parameter required for all the bets, and will dictate wether the player will win or lose his money.
@@ -120,28 +120,60 @@ const roulette = {
   //Specific bet types
   singleNumberBet: function (rouletteNumber, bettedAmount, bettedNumber) {
     if (rouletteNumber == bettedNumber) {
-      alert(`La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ al número ${bettedNumber} ganó $ ${bettedAmount * 35}`)
+      alert(
+        `La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ al número ${bettedNumber} ganó $ ${
+          bettedAmount * 35
+        }`,
+      )
       bettedAmount = bettedAmount * 36
       playerMoney = playerMoney + bettedAmount
     } else {
-      alert(`La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ al número ${bettedNumber} perdió`)
+      alert(
+        `La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ al número ${bettedNumber} perdió`,
+      )
     }
   },
 
   colorBet: function (rouletteNumber, bettedAmount, bettedColor) {
-    landedColor = this.color(rouletteNumber)
+    let landedColor = this.color(rouletteNumber)
     bettedColor = this.convertColorToEnglish(bettedColor)
 
     if (landedColor == bettedColor) {
-      alert(`La bola cae en ${landedColor}\n¡La apuesta de ${bettedAmount}$ al color ${bettedColor} ganó $ ${bettedAmount * 2}`)
+      alert(
+        `La bola cae en ${landedColor}\n¡La apuesta de ${bettedAmount}$ al color ${bettedColor} ganó $ ${
+          bettedAmount * 2
+        }`,
+      )
       playerMoney = playerMoney + bettedAmount * 3
     } else {
-      alert(`La bola cae en ${landedColor}\n¡La apuesta de ${bettedAmount}$ al color ${bettedColor} perdió`)
+      alert(
+        `La bola cae en ${landedColor}\n¡La apuesta de ${bettedAmount}$ al color ${bettedColor} perdió`,
+      )
     }
   },
 
-  dozenBet: function(rouletteNumber, bettedAmount, bettedDozen) {
+  dozenBet: function (rouletteNumber, bettedAmount, bettedDozen) {
+    let isBettedDozenCorrect = false
+    if (bettedDozen == 1 && 1 <= rouletteNumber <= 12) {
+      isBettedDozenCorrect = true
+    } else if (bettedDozen == 2 && 13 <= rouletteNumber <= 24) {
+      isBettedDozenCorrect = true
+    } else if (bettedDozen == 3 && 25 <= rouletteNumber <= 36) {
+      isBettedDozenCorrect = true
+    }
 
+    if (isBettedDozenCorrect) {
+      alert(
+        `La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ a la ${bettedDozen}º docena ganó $ ${
+          bettedAmount * 2
+        }`,
+      )
+      playerMoney = playerMoney + bettedAmount * 3
+    } else {
+      alert(
+        `La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ a la ${bettedDozen}º docena perdió!`,
+      )
+    }
   },
 
   //Making the bets, storing them on an array and running them
@@ -171,6 +203,7 @@ const roulette = {
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
+          playerMoney = playerMoney + amount
           this.makeBet()
         }
         //********************************End of Casetype Color ********************************
@@ -192,6 +225,7 @@ const roulette = {
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
+          playerMoney = playerMoney + amount
           this.makeBet()
         }
 
@@ -203,22 +237,29 @@ const roulette = {
       case 'docena':
       case 'docenas':
         //********************************Start of Casetype Dozen ********************************
-        let dozen = prompt ("¿A cuál docena desea apostar?\n\n1: Primera docena\n2: Segunda docena\n3: Tercer docena", 1)
-        if (((dozen == 1) || (dozen == 2) || (dozen == 3)) && validAmount(amount)) {
+        let dozen = prompt(
+          '¿A cuál docena desea apostar?\n\n1: Primera docena\n2: Segunda docena\n3: Tercer docena',
+          1,
+        )
+        dozen = parseInt(dozen)
+        if ((dozen == 1 || dozen == 2 || dozen == 3) && validAmount(amount)) {
           //dozenBet: function(rouletteNumber, bettedAmount, bettedDozen)
           betList.push([betType, amount, dozen])
           alert('¡Apuesta aceptada!')
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
+          playerMoney = playerMoney + amount
           this.makeBet()
         }
         //********************************End of Casetype Dozen ********************************
+        break
 
       case 'cancel':
       case 'cancelar':
       case null:
         alert('Apuesta cancelada')
+        playerMoney = playerMoney + amount
         break
 
       default:
@@ -255,6 +296,14 @@ const roulette = {
             betList[i][1],
             betList[i][2],
           )
+          break
+
+        case 'dozen':
+        case 'dozens':
+        case 'docena':
+        case 'docenas':
+          //dozenBet: function (rouletteNumber, bettedAmount, bettedDozen)
+          this.dozenBet(rouletteNumberResult, betList[i][1], betList[i][2])
           break
       }
     }
