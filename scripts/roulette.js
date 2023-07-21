@@ -2,7 +2,7 @@
 /*
  PLAN ABOUT HOW WOULD THIS IDEALLY WORK:
  The player will make a number of bets based on color (Done), column, rows, number (Done) or dozens.
- These bets will be saved somewhere with all the necessary paremeters. Maybe an array will work?
+ These bets will be saved somewhere with all the necessary paremeters. Maybe an array will work? (It did)
  Once the player is done placing bets, he will call for a function to spin the roulette wheel which will return a single result.
  This result will be the final parameter required for all the bets, and will dictate wether the player will win or lose his money.
  What I need to do now is to figure out how to have a list or array of incomplete functions that are lacking "rouletteNumber".
@@ -120,27 +120,11 @@ const roulette = {
   //Specific bet types
   singleNumberBet: function (rouletteNumber, bettedAmount, bettedNumber) {
     if (rouletteNumber == bettedNumber) {
-      alert(
-        'La bola cae en ' +
-          rouletteNumber +
-          '\n¡La apuesta de ' +
-          bettedAmount +
-          '$ al al número ' +
-          bettedNumber +
-          ' ganó $' + bettedAmount * 35
-      )
+      alert(`La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ al número ${bettedNumber} ganó $ ${bettedAmount * 35}`)
       bettedAmount = bettedAmount * 36
       playerMoney = playerMoney + bettedAmount
     } else {
-      alert(
-        'La bola cae en ' +
-          rouletteNumber +
-          '\n¡La apuesta de ' +
-          bettedAmount +
-          '$ al al número ' +
-          bettedNumber +
-          ' perdió!',
-      )
+      alert(`La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ al número ${bettedNumber} perdió`)
     }
   },
 
@@ -149,27 +133,15 @@ const roulette = {
     bettedColor = this.convertColorToEnglish(bettedColor)
 
     if (landedColor == bettedColor) {
-      alert(
-        'La bola cae en ' +
-          landedColor +
-          '\n¡La apuesta de ' +
-          bettedAmount +
-          '$ al color ' +
-          bettedColor +
-          ' ganó $' + bettedAmount * 2
-      )
+      alert(`La bola cae en ${landedColor}\n¡La apuesta de ${bettedAmount}$ al color ${bettedColor} ganó $ ${bettedAmount * 2}`)
       playerMoney = playerMoney + bettedAmount * 3
     } else {
-      alert(
-        'La bola cae en ' +
-          landedColor +
-          '\n¡La apuesta de ' +
-          bettedAmount +
-          '$ al color ' +
-          bettedColor +
-          ' perdió!',
-      )
+      alert(`La bola cae en ${landedColor}\n¡La apuesta de ${bettedAmount}$ al color ${bettedColor} perdió`)
     }
+  },
+
+  dozenBet: function(rouletteNumber, bettedAmount, bettedDozen) {
+
   },
 
   //Making the bets, storing them on an array and running them
@@ -226,6 +198,23 @@ const roulette = {
         //********************************Start of Casetype Number ********************************
         break
 
+      case 'dozen':
+      case 'dozens':
+      case 'docena':
+      case 'docenas':
+        //********************************Start of Casetype Dozen ********************************
+        let dozen = prompt ("¿A cuál docena desea apostar?\n\n1: Primera docena\n2: Segunda docena\n3: Tercer docena", 1)
+        if (((dozen == 1) || (dozen == 2) || (dozen == 3)) && validAmount(amount)) {
+          //dozenBet: function(rouletteNumber, bettedAmount, bettedDozen)
+          betList.push([betType, amount, dozen])
+          alert('¡Apuesta aceptada!')
+          console.log(betList)
+        } else {
+          alert('¡Datos Inválidos!')
+          this.makeBet()
+        }
+        //********************************End of Casetype Dozen ********************************
+
       case 'cancel':
       case 'cancelar':
       case null:
@@ -245,7 +234,7 @@ const roulette = {
 
   runBet: function () {
     let rouletteNumberResult = this.spin()
-    alert('¡La bola cayó en ' + rouletteNumberResult + '!')
+    alert(`¡La bola cayó en ${rouletteNumberResult}!`)
 
     //betList formatting:
     //betList[Bet Index][The Type of Bet, Betted Amount, Parameter Of Bet]
@@ -269,7 +258,7 @@ const roulette = {
           break
       }
     }
-    alert("Dinero restante: " + playerMoney)
+    alert(`Dinero restante: ${playerMoney}`)
     betList = []
   },
 }
