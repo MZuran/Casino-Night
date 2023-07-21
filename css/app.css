@@ -18,6 +18,10 @@
   color: rgb(242, 232, 207);
 }
 
+p {
+  font-size: large;
+}
+
 .flex-dir-row {
   display: flex;
   flex-direction: row;
@@ -57,12 +61,28 @@
   margin: 10px;
 }
 
+.margin-thirty {
+  margin: 30px;
+}
+
 .max-width-50 {
   max-width: 50%;
 }
 
 .hilight-red {
   color: rgb(188, 71, 73);
+  font-family: "font-2", sans-serif;
+  text-shadow: 1px 1px black;
+}
+
+.hilight-green {
+  color: rgb(106, 153, 78);
+  font-family: "font-2", sans-serif;
+  text-shadow: 1px 1px black;
+}
+
+.hilight-black {
+  color: #2F4F4F;
   font-family: "font-2", sans-serif;
   text-shadow: 1px 1px black;
 }
@@ -111,7 +131,6 @@
 
 .index-home {
   width: 100%;
-  height: 100%;
   background-color: rgb(56, 102, 65);
   background-image: url("./../media/backgrounds/playing-symbols-very-transparent.png");
   background-size: 10%;
