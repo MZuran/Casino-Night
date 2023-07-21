@@ -159,11 +159,11 @@ const roulette = {
 
   dozenBet: function (rouletteNumber, bettedAmount, bettedDozen) {
     let isBettedDozenCorrect = false
-    if (bettedDozen == 1 && 1 <= rouletteNumber <= 12) {
+    if (bettedDozen == 1 && 1 <= rouletteNumber && rouletteNumber <= 12) {
       isBettedDozenCorrect = true
-    } else if (bettedDozen == 2 && 13 <= rouletteNumber <= 24) {
+    } else if (bettedDozen == 2 && 13 <= rouletteNumber && rouletteNumber <= 24) {
       isBettedDozenCorrect = true
-    } else if (bettedDozen == 3 && 25 <= rouletteNumber <= 36) {
+    } else if (bettedDozen == 3 && 25 <= rouletteNumber && rouletteNumber <= 36) {
       isBettedDozenCorrect = true
     }
 
