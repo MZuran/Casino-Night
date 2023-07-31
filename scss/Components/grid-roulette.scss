@@ -30,7 +30,7 @@ $border-smoothing: 50%;
     border-bottom-right-radius: $border-smoothing;
 }
 
-.parent {
+.rouletteParent {
     margin: 10px;
 
     display: grid;
@@ -50,6 +50,8 @@ $border-smoothing: 50%;
 
         min-width: $grid-size;
         min-height: $grid-size;
+
+        @include hoverBackgroundAnimation(rgba($color-light-green, 0.5), 0.5s);
 
         & p {
             font-family: 'font-3', sans-serif;

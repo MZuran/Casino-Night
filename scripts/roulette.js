@@ -1,28 +1,5 @@
-//************************************************* Programmer's Thought Log *************************************************
-/*
- PLAN ABOUT HOW WOULD THIS IDEALLY WORK:
- The player will make a number of bets based on color (Done), column, rows, number (Done) or dozens (Done).
- These bets will be saved somewhere with all the necessary paremeters. Maybe an array will work? (It did)
- Once the player is done placing bets, he will call for a function to spin the roulette wheel which will return a single result.
- This result will be the final parameter required for all the bets, and will dictate wether the player will win or lose his money.
- What I need to do now is to figure out how to have a list or array of incomplete functions that are lacking "rouletteNumber".
- And then next thing I need to do is to have them all be called once one single "rouletteNumber" is generated for them all.
-
- TO DO:
- -Google or find out how to do that. (Done)
-
- POTENTIAL SOLUTIONS:
- -I found out about something called partialApply. 
-  (Solution discarded, not practical for this issue.)
-
- -Make a function containing all possible bets, a fixed number of parameters and a switch case to select which bet has the player made.
-  We can make a list of parameters to represent all the bets (betList) and once it's done, roll a number and use the list to check the result of the bets.
-  This will be done in two functions; one to make the list (roulette.makeBet) and another to run the list with all of its parameters and one result (roulette.runBet).
-  (This solution was the perfect one to keep)
- */
-
 //************************************************* Globally Accessible Variables *************************************************
-var playerMoney = parseInt(1000)
+let playerMoney = parseInt(1000)
 
 //************************************************* Helper Universal Functions *************************************************
 function isEven(number) {
@@ -52,6 +29,8 @@ const roulette = {
   redColorList: [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36],
 
   blackColorList: [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35],
+
+  rouletteDomElementsClasses: ['square1', 'square2', 'square3', 'square4', 'square5', 'square6', 'square7', 'square8', 'square9', 'square10', 'square11', 'square12', 'square13', 'square14', 'square15', 'square16', 'square17', 'square18', 'square19', 'square20', 'square21', 'square22', 'square23', 'square24', 'square25', 'square26', 'square27', 'square28', 'square29', 'square30', 'square31', 'square32', 'square33', 'square34', 'square35', 'square36', 'square0', 'firstRowSquare', 'secondRowSquare', 'thirdRowSquare', 'firstDozenSquare', 'secondDozenSquare', 'thirdDozenSquare', 'firstHalfSquare', 'evenSquare', 'redSquare', 'blackSquare', 'oddSquare', 'secondHalfSquare'],
 
   //Helper roulette functions
   validColor: function (color) {
@@ -178,6 +157,28 @@ const roulette = {
       alert(
         `La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ a la ${bettedDozen}º docena perdió!`,
       )
+    }
+  },
+
+  //Adding Event Listeners to DOM
+  prepareEvents: function(){
+    for (let i = 0; i < roulette.rouletteDomElementsClasses.length; i++) {
+      let className = roulette.rouletteDomElementsClasses[i]
+      let button = document.getElementsByClassName(className)
+
+      //The first 37 Items are the single number squares so they all share the same kind of bet
+      if (i < 37) {
+
+        let squareNumber = roulette.rouletteDomElementsClasses[i]
+        squareNumber = parseInt(squareNumber.replace("square", "")) 
+        //console.log(button[0])
+
+        //THIS IS WHAT ACTUALLY HAPPENS WHEN YOU CLICK A NUMBER NOW
+        button[0].addEventListener("click", function() {
+          console.log(squareNumber);
+        });
+
+      }
     }
   },
 
@@ -316,3 +317,6 @@ const roulette = {
     betList = []
   },
 }
+
+//************************************************* Events *************************************************
+roulette.prepareEvents()

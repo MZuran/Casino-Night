@@ -1,0 +1,8 @@
+@mixin hoverBackgroundAnimation($color, $time) {
+    transition: $time;
+    &:hover{
+        background-color: $color;
+        transition: $time;
+        cursor: pointer;
+    }
+  }
