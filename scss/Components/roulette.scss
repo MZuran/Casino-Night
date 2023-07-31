@@ -30,16 +30,3 @@
     font-family: 'font-3', sans-serif;
     font-size-adjust: inherit;
 }
-
-.red-square {
-    background-color: $color-red;
-}
-
-.black-square {
-    background-color: $color-black;
-}
-
-.green-square {
-    background-color: $color-green;
-    height: calc(#{7.5}vw + #{6}px);
-}

@@ -1,0 +1,109 @@
+$grid-size: 2.5vw;
+
+$border-smoothing: 50%;
+
+.red-square {
+    background-color: $color-red;
+}
+
+.black-square {
+    background-color: $color-black;
+}
+
+.green-square {
+    background-color: $color-green;
+}
+
+.smooth-top-left {
+    border-top-left-radius: $border-smoothing;
+}
+
+.smooth-top-right {
+    border-top-right-radius: $border-smoothing;
+}
+
+.smooth-bottom-left {
+    border-bottom-left-radius: $border-smoothing;
+}
+
+.smooth-bottom-right {
+    border-bottom-right-radius: $border-smoothing;
+}
+
+.parent {
+    margin: 10px;
+
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+    & div {
+        border-style: solid;
+        border-width: 2px;
+
+        display:flex;
+        padding: 2px;
+        justify-content: center;
+        align-items: center;
+
+        min-width: $grid-size;
+        min-height: $grid-size;
+
+        & p {
+            font-family: 'font-3', sans-serif;
+            font-size-adjust: inherit;
+        }
+    }
+    }
+
+    .square1 { grid-area: 4 / 2 / 5 / 3; }
+    .square2 { grid-area: 3 / 2 / 4 / 3; }
+    .square3 { grid-area: 2 / 2 / 3 / 3; }
+    .square4 { grid-area: 4 / 3 / 5 / 4; }
+    .square5 { grid-area: 3 / 3 / 4 / 4; }
+    .square6 { grid-area: 2 / 3 / 3 / 4; }
+    .square7 { grid-area: 4 / 4 / 5 / 5; }
+    .square8 { grid-area: 3 / 4 / 4 / 5; }
+    .square9 { grid-area: 2 / 4 / 3 / 5; }
+    .square10 { grid-area: 4 / 5 / 5 / 6; }
+    .square11 { grid-area: 3 / 5 / 4 / 6; }
+    .square12 { grid-area: 2 / 5 / 3 / 6; }
+    .square13 { grid-area: 4 / 6 / 5 / 7; }
+    .square14 { grid-area: 3 / 6 / 4 / 7; }
+    .square15 { grid-area: 2 / 6 / 3 / 7; }
+    .square16 { grid-area: 4 / 7 / 5 / 8; }
+    .square17 { grid-area: 3 / 7 / 4 / 8; }
+    .square18 { grid-area: 2 / 7 / 3 / 8; }
+    .square19 { grid-area: 4 / 8 / 5 / 9; }
+    .square20 { grid-area: 3 / 8 / 4 / 9; }
+    .square21 { grid-area: 2 / 8 / 3 / 9; }
+    .square22 { grid-area: 4 / 9 / 5 / 10; }
+    .square23 { grid-area: 3 / 9 / 4 / 10; }
+    .square24 { grid-area: 2 / 9 / 3 / 10; }
+    .square25 { grid-area: 4 / 10 / 5 / 11; }
+    .square26 { grid-area: 3 / 10 / 4 / 11; }
+    .square27 { grid-area: 2 / 10 / 3 / 11; }
+    .square28 { grid-area: 4 / 11 / 5 / 12; }
+    .square29 { grid-area: 3 / 11 / 4 / 12; }
+    .square30 { grid-area: 2 / 11 / 3 / 12; }
+    .square31 { grid-area: 4 / 12 / 5 / 13; }
+    .square32 { grid-area: 3 / 12 / 4 / 13; }
+    .square33 { grid-area: 2 / 12 / 3 / 13; }
+    .square34 { grid-area: 4 / 13 / 5 / 14; }
+    .square35 { grid-area: 3 / 13 / 4 / 14; }
+    .square36 { grid-area: 2 / 13 / 3 / 14; }    
+    .square0 { grid-area: 2 / 1 / 5 / 2; }
+    .firstRowSquare { grid-area: 2 / 14 / 3 / 15; }
+    .secondRowSquare { grid-area: 3 / 14 / 4 / 15; }
+    .thirdRowSquare { grid-area: 4 / 14 / 5 / 15; }
+    .firstDozenSquare { grid-area: 1 / 2 / 2 / 6; }
+    .secondDozenSquare { grid-area: 1 / 6 / 2 / 10; }
+    .thirdDozenSquare { grid-area: 1 / 10 / 2 / 14; }
+    .firstHalfSquare { grid-area: 5 / 2 / 6 / 4; }
+    .evenSquare { grid-area: 5 / 4 / 6 / 6; }
+    .redSquare { grid-area: 5 / 6 / 6 / 8; }
+    .blackSquare { grid-area: 5 / 8 / 6 / 10; }
+    .oddSquare { grid-area: 5 / 10 / 6 / 12; }
+    .secondHalfSquare { grid-area: 5 / 12 / 6 / 14; }

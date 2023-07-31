@@ -8,170 +8,59 @@
   </head>
   <body>
     <main class="index-home flex-dir-column absolute-center">
-      <h1>¡Abrí la consola para empezar!</h1>
-
-      <p class="max-width-50">
-        Bienvenidos a la segunda entrega del casino de Matías Zuran. En esta
-        ocasión, tendremos más cosas con las que jugar comparado a la
-        <a
-          href="https://github.com/MZuran/Casino-Night/tree/cede9218a496d484771aff6de092d241e8ddc0a4"
-        >
-          primera entrega
-        </a>
-        . En primer lugar, la más grande adición en esta versión de mi casino es
-        la posibilidad de realizar
-        <b>varias apuestas en paralelo</b>
-        antes de hacer girar la ruleta. ¿Qué nos permite hacer esto? Gracias a
-        este nuevo sistema el usuario puede apostar por varios números en
-        simultáneo como en la vida real en lugar de jugar una versión de ruleta
-        casi imposible de ganar.
-        <br />
-        <br />
-        <b>Nuevas Adiciones:</b>
-        Además de el ya mencionado nuevo sistema de apuestas paralelas, el
-        usuario ahora puede apostar por color y docena además de por número.
-        Además, hice con una combinación de css y html una pequeña tabla de
-        referencia para el juego de ruleta (me costó mucho)
-        <br />
-        <br />
-        <b>Instrucciones para Jugar:</b>
-        Para generar una nueva apuesta, el usuario debe ingresar en consola el
-        comando
-        <b class="hilight-red">roulette.makeBet()</b>
-        . Este comando se puede ejecutar tantas veces como quiera el usuario y
-        con cada ejecución, el usuario apostará cualquier cantidad de su dinero
-        inicial como crea conveniente. Los parámetros que se aceptan para el
-        tipo de apuesta por el momento son
-        <b class="hilight-green">color</b>
-        ,
-        <b class="hilight-green">número</b>
-        y
-        <b class="hilight-green">docena</b>
-        . Adicionalmente, el usuario puede escribir como tipo de apuesta
-        <b class="hilight-black">cancelar</b>
-        o hacer click en el botón de cancelación para cancelar la apuesta luego
-        de que le pidan la cantidad de dinero a apostar (Dinero el cual le será
-        devuelto por supuesto)
-        <br />
-        <br>
-      </p>
-      <p class="max-width-50">
-        Una vez que el usuario haya terminado de hacer todas las apuestas que
-        quiera, debe escribir en consola el comando
-        <b class="hilight-red">roulette.runBet()</b>
-        para que la ruleta gire y se decida el destino de todas sus apuestas (y
-        su dinero). El sitio está diseñado para proveerle cualquier otra
-        información relevante que necesite mediante el texto de los prompts o
-        alerts. ¡A divertirse!
-        <br><br>
-        <b>Desafío del Programador: </b> ¿Podés llegar a 3000$? Empezás con $1000. (si alguno lo intentó dígame xfas)
-      </p>
-
-      <!-- Start of the Roulette Object -->
-      <div class="margin-thirty flex-dir-row">
-        <!-- Zero Column -->
-        <div class="flex-dir-column">
-          <div class="roulette-container invisible-container"><p>-</p></div>
-          <div class="flex-dir-column">
-            <div class="roulette-container roulette-square green-square">0</div>
-          </div>
+      <!-- New Roulette Object  -->
+      <div class="parent">
+        <div class="square1 red-square"><p>1</p></div>
+        <div class="square2 black-square"><p>2</p></div>
+        <div class="square3 red-square"><p>3</p></div>
+        <div class="square4 black-square"><p>4</p></div>
+        <div class="square5 red-square"><p>5</p></div>
+        <div class="square6 black-square"><p>6</p></div>
+        <div class="square7 red-square"><p>7</p></div>
+        <div class="square8 black-square"><p>8</p></div>
+        <div class="square9 red-square"><p>9</p></div>
+        <div class="square10 black-square"><p>10</p></div>
+        <div class="square11 black-square"><p>11</p></div>
+        <div class="square12 red-square"><p>12</p></div>
+        <div class="square13 black-square"><p>13</p></div>
+        <div class="square14 red-square"><p>14</p></div>
+        <div class="square15 black-square"><p>15</p></div>
+        <div class="square16 red-square"><p>16</p></div>
+        <div class="square17 black-square"><p>17</p></div>
+        <div class="square18 red-square"><p>18</p></div>
+        <div class="square19 red-square"><p>19</p></div>
+        <div class="square20 black-square"><p>20</p></div>
+        <div class="square21 red-square"><p>21</p></div>
+        <div class="square22 black-square"><p>22</p></div>
+        <div class="square23 red-square"><p>23</p></div>
+        <div class="square24 black-square"><p>24</p></div>
+        <div class="square25 red-square"><p>25</p></div>
+        <div class="square26 black-square"><p>26</p></div>
+        <div class="square27 red-square"><p>27</p></div>
+        <div class="square28 black-square"><p>28</p></div>
+        <div class="square29 red-square"><p>29</p></div>
+        <div class="square30 black-square"><p>30</p></div>
+        <div class="square31 red-square"><p>31</p></div>
+        <div class="square32 black-square"><p>32</p></div>
+        <div class="square33 red-square"><p>33</p></div>
+        <div class="square34 black-square"><p>34</p></div>
+        <div class="square35 red-square"><p>35</p></div>
+        <div class="square36 black-square"><p>36</p></div>
+        <div class="square0 green-square smooth-top-left smooth-bottom-left"><p>0</p></div>
+        <div class="firstRowSquare smooth-top-right smooth-bottom-right"><p>2 a 1</p></div>
+        <div class="secondRowSquare smooth-top-right smooth-bottom-right"><p>2 a 1</p></div>
+        <div class="thirdRowSquare smooth-top-right smooth-bottom-right"><p>2 a 1</p></div>
+        <div class="firstDozenSquare smooth-top-left smooth-top-right"><p>Docena 1</p></div>
+        <div class="secondDozenSquare smooth-top-left smooth-top-right"><p>Docena 2</p></div>
+        <div class="thirdDozenSquare smooth-top-left smooth-top-right"><p>Docena 3</p></div>
+        <div class="firstHalfSquare smooth-bottom-left"><p>1 - 18</p></div>
+        <div class="evenSquare"><p>Par</p></div>
+        <div class="redSquare"><p>Rojo</p></div>
+        <div class="blackSquare"><p>Negro</p></div>
+        <div class="oddSquare"><p>Impar</p></div>
+        <div class="secondHalfSquare smooth-bottom-right"><p>19 - 36</p></div>
         </div>
-        <!-- First Dozen -->
-        <div class="flex-dir-column">
-          <div class="roulette-container"><p>Docena 1</p></div>
-          <div class="flex-dir-row">
-            <div class="roulette-container roulette-square red-square">3</div>
-            <div class="roulette-container roulette-square black-square">6</div>
-            <div class="roulette-container roulette-square red-square">9</div>
-            <div class="roulette-container roulette-square red-square">12</div>
-          </div>
-          <div class="flex-dir-row">
-            <div class="roulette-container roulette-square black-square">2</div>
-            <div class="roulette-container roulette-square red-square">5</div>
-            <div class="roulette-container roulette-square black-square">8</div>
-            <div class="roulette-container roulette-square black-square">
-              11
-            </div>
-          </div>
-          <div class="flex-dir-row">
-            <div class="roulette-container roulette-square red-square">1</div>
-            <div class="roulette-container roulette-square black-square">4</div>
-            <div class="roulette-container roulette-square red-square">7</div>
-            <div class="roulette-container roulette-square black-square">
-              10
-            </div>
-          </div>
-        </div>
-        <!-- Second Dozen -->
-        <div class="flex-dir-column">
-          <div class="roulette-container"><p>Docena 2</p></div>
-          <div class="flex-dir-row">
-            <div class="roulette-container roulette-square black-square">
-              15
-            </div>
-            <div class="roulette-container roulette-square red-square">18</div>
-            <div class="roulette-container roulette-square red-square">21</div>
-            <div class="roulette-container roulette-square black-square">
-              24
-            </div>
-          </div>
-          <div class="flex-dir-row">
-            <div class="roulette-container roulette-square red-square">14</div>
-            <div class="roulette-container roulette-square black-square">
-              17
-            </div>
-            <div class="roulette-container roulette-square black-square">
-              20
-            </div>
-            <div class="roulette-container roulette-square red-square">23</div>
-          </div>
-          <div class="flex-dir-row">
-            <div class="roulette-container roulette-square black-square">
-              13
-            </div>
-            <div class="roulette-container roulette-square red-square">16</div>
-            <div class="roulette-container roulette-square red-square">19</div>
-            <div class="roulette-container roulette-square black-square">
-              22
-            </div>
-          </div>
-        </div>
-        <!-- Third Dozen -->
-        <div class="flex-dir-column">
-          <div class="roulette-container"><p>Docena 3</p></div>
-          <div class="flex-dir-row">
-            <div class="roulette-container roulette-square red-square">27</div>
-            <div class="roulette-container roulette-square red-square">30</div>
-            <div class="roulette-container roulette-square black-square">
-              33
-            </div>
-            <div class="roulette-container roulette-square red-square">36</div>
-          </div>
-          <div class="flex-dir-row">
-            <div class="roulette-container roulette-square black-square">
-              26
-            </div>
-            <div class="roulette-container roulette-square black-square">
-              29
-            </div>
-            <div class="roulette-container roulette-square red-square">32</div>
-            <div class="roulette-container roulette-square black-square">
-              35
-            </div>
-          </div>
-          <div class="flex-dir-row">
-            <div class="roulette-container roulette-square red-square">25</div>
-            <div class="roulette-container roulette-square black-square">
-              28
-            </div>
-            <div class="roulette-container roulette-square black-square">
-              31
-            </div>
-            <div class="roulette-container roulette-square red-square">34</div>
-          </div>
-        </div>
-      </div>
-      <!-- End of the Roulette Object -->
+      <!-- End of New Roulette Object -->
     </main>
     <script src="scripts/roulette.js"></script>
   </body>
