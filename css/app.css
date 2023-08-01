@@ -127,6 +127,7 @@ p {
 .rouletteButton {
   min-height: 2.5vw;
   background-color: rgba(0, 0, 0, 0);
+  margin: 10px;
   border-style: solid;
   border-width: 3px;
   border-color: rgb(242, 232, 207);

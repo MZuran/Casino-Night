@@ -137,6 +137,14 @@ const roulette = {
     }
   },
 
+  sumSecondParameters: function(betList) {
+    let sum = 0;
+    for (const bet of betList) {
+      sum += bet[1];
+    }
+    return sum;
+  },
+
   getSliderNumber: function () {
     let amount = parseInt(document.getElementById('demo').innerText)
     return amount
@@ -527,8 +535,16 @@ const roulette = {
     rouletteButton.addEventListener('click', function () {
       roulette.runBet()
     })
-  },
 
+    let rouletteCancelBetButton = document.getElementById("cancelBetButton")
+    rouletteCancelBetButton.addEventListener('click', function () {
+      playerMoney = playerMoney + roulette.sumSecondParameters(betList)
+      betList = []
+      updateSlider()
+      alert("Apuestas Canceladas")
+    })
+  },
+  
   //||||||||||||||||||||||Making the bets, storing them on an array and running them||||||||||||||||||||||
   makeBet: function (predefinedBetType, predefinedAmount, predefinedParameter) {
     let betType
