@@ -2,3 +2,10 @@
     width: 100%;
     @include bg-playing-cards($color-1, 10%);
 };
+
+#tableParent {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

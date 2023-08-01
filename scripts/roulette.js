@@ -26,11 +26,99 @@ let betList = []
 const roulette = {
   validColorList: ['rojo', 'negro', 'verde', 'red', 'black', 'green'],
 
-  redColorList: [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36],
+  redColorList: [
+    1,
+    3,
+    5,
+    7,
+    9,
+    12,
+    14,
+    16,
+    18,
+    19,
+    21,
+    23,
+    25,
+    27,
+    30,
+    32,
+    34,
+    36,
+  ],
 
-  blackColorList: [2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35],
+  blackColorList: [
+    2,
+    4,
+    6,
+    8,
+    10,
+    11,
+    13,
+    15,
+    17,
+    20,
+    22,
+    24,
+    26,
+    28,
+    29,
+    31,
+    33,
+    35,
+  ],
 
-  rouletteDomElementsClasses: ['square1', 'square2', 'square3', 'square4', 'square5', 'square6', 'square7', 'square8', 'square9', 'square10', 'square11', 'square12', 'square13', 'square14', 'square15', 'square16', 'square17', 'square18', 'square19', 'square20', 'square21', 'square22', 'square23', 'square24', 'square25', 'square26', 'square27', 'square28', 'square29', 'square30', 'square31', 'square32', 'square33', 'square34', 'square35', 'square36', 'square0', 'firstRowSquare', 'secondRowSquare', 'thirdRowSquare', 'firstDozenSquare', 'secondDozenSquare', 'thirdDozenSquare', 'firstHalfSquare', 'evenSquare', 'redSquare', 'blackSquare', 'oddSquare', 'secondHalfSquare'],
+  rouletteDomElementsClasses: [
+    'square1',
+    'square2',
+    'square3',
+    'square4',
+    'square5',
+    'square6',
+    'square7',
+    'square8',
+    'square9',
+    'square10',
+    'square11',
+    'square12',
+    'square13',
+    'square14',
+    'square15',
+    'square16',
+    'square17',
+    'square18',
+    'square19',
+    'square20',
+    'square21',
+    'square22',
+    'square23',
+    'square24',
+    'square25',
+    'square26',
+    'square27',
+    'square28',
+    'square29',
+    'square30',
+    'square31',
+    'square32',
+    'square33',
+    'square34',
+    'square35',
+    'square36',
+    'square0',
+    'firstRowSquare',
+    'secondRowSquare',
+    'thirdRowSquare',
+    'firstDozenSquare',
+    'secondDozenSquare',
+    'thirdDozenSquare',
+    'firstHalfSquare',
+    'evenSquare',
+    'redSquare',
+    'blackSquare',
+    'oddSquare',
+    'secondHalfSquare',
+  ],
 
   //Helper roulette functions
   validColor: function (color) {
@@ -47,16 +135,24 @@ const roulette = {
     }
   },
 
-  askForBettedAmount: function () {
-    let amount = prompt(
-      '¿Cuánto dinero desea apostar? Dinero Disponible: ' +
-        playerMoney +
-        '\n\nRecuerde que una vez que apueste, se le retirará el dinero hasta saber si su apuesta ganó o perdió',
-      100,
-    )
+  askForBettedAmount: function (predefinedAmount) {
+    let amount
+    if (!predefinedAmount) {
+      amount = prompt(
+        '¿Cuánto dinero desea apostar? Dinero Disponible: ' +
+          playerMoney +
+          '\n\nRecuerde que una vez que apueste, se le retirará el dinero hasta saber si su apuesta ganó o perdió',
+        100,
+      )
+    } else {
+      amount = predefinedAmount
+    }
 
     if (!amount) {
       amount = 0
+    }
+    if (amount > playerMoney) {
+      alert('Error in askForBettedAmount')
     }
     amount = parseInt(amount)
 
@@ -140,9 +236,17 @@ const roulette = {
     let isBettedDozenCorrect = false
     if (bettedDozen == 1 && 1 <= rouletteNumber && rouletteNumber <= 12) {
       isBettedDozenCorrect = true
-    } else if (bettedDozen == 2 && 13 <= rouletteNumber && rouletteNumber <= 24) {
+    } else if (
+      bettedDozen == 2 &&
+      13 <= rouletteNumber &&
+      rouletteNumber <= 24
+    ) {
       isBettedDozenCorrect = true
-    } else if (bettedDozen == 3 && 25 <= rouletteNumber && rouletteNumber <= 36) {
+    } else if (
+      bettedDozen == 3 &&
+      25 <= rouletteNumber &&
+      rouletteNumber <= 36
+    ) {
       isBettedDozenCorrect = true
     }
 
@@ -161,35 +265,42 @@ const roulette = {
   },
 
   //Adding Event Listeners to DOM
-  prepareEvents: function(){
+  prepareEvents: function () {
     for (let i = 0; i < roulette.rouletteDomElementsClasses.length; i++) {
       let className = roulette.rouletteDomElementsClasses[i]
       let button = document.getElementsByClassName(className)
 
       //The first 37 Items are the single number squares so they all share the same kind of bet
       if (i < 37) {
-
         let squareNumber = roulette.rouletteDomElementsClasses[i]
-        squareNumber = parseInt(squareNumber.replace("square", "")) 
+        squareNumber = parseInt(squareNumber.replace('square', ''))
         //console.log(button[0])
 
         //THIS IS WHAT ACTUALLY HAPPENS WHEN YOU CLICK A NUMBER NOW
-        button[0].addEventListener("click", function() {
-          console.log(squareNumber);
-        });
-
+        button[0].addEventListener('click', function () {
+          console.log(squareNumber)
+          let amount = parseInt(document.getElementById('demo').innerText)
+          roulette.makeBet('number', amount, squareNumber)
+        })
       }
     }
   },
 
   //Making the bets, storing them on an array and running them
-  makeBet: function () {
-    let betType = prompt(
-      '¿Qué tipo de apuesta desea hacer?\n\nTambién puede cancelar la apuesta',
-      'color',
-    )
+  makeBet: function (predefinedBetType, predefinedAmount, predefinedParameter) {
+    let betType
+    let amount
 
-    let amount = this.askForBettedAmount()
+    if (!predefinedBetType) {
+      betType = prompt(
+        '¿Qué tipo de apuesta desea hacer?\n\nTambién puede cancelar la apuesta',
+        'color',
+      )
+    } else {
+      betType = predefinedBetType
+    }
+
+    amount = this.askForBettedAmount(predefinedAmount)
 
     switch (betType) {
       case 'color':
@@ -219,19 +330,39 @@ const roulette = {
       case 'numero':
       case 'número':
         //********************************Start of Casetype Number ********************************
-        let number = prompt('¿A qué número desea apostar? Default: 0', 0)
-        if (!number) {
-          number = 0
-        }
-        number = parseInt(number)
+        let number
+        let usedPredefinedAmount = false
 
-        if (validAmount(amount) && this.validNumber(number)) {
+        if (predefinedAmount) {
+          usedPredefinedAmount = true
+        }
+
+        if (!predefinedParameter) {
+          number = prompt('¿A qué número desea apostar? Default: 0', 0)
+          if (!number) {
+            number = 0
+          }
+          number = parseInt(number)
+        } else {
+          number = predefinedParameter
+        }
+
+        if (
+          (validAmount(amount) || usedPredefinedAmount) &&
+          this.validNumber(number)
+        ) {
           betList.push([betType, amount, number])
           alert('¡Apuesta aceptada!')
           console.log(betList)
+          updateSlider()
         } else {
           alert('¡Datos Inválidos!')
+
+          console.log(amount)
+          console.log(number)
+
           playerMoney = playerMoney + amount
+          updateSlider()
           this.makeBet()
         }
 
@@ -320,3 +451,35 @@ const roulette = {
 
 //************************************************* Events *************************************************
 roulette.prepareEvents()
+
+//************************************************* Slider *************************************************
+let slider = document.getElementById('myRange')
+let output = document.getElementById('demo')
+let board = document.getElementById('rouletteParent')
+output.innerHTML = slider.value
+
+document.getElementById('myRange').max = playerMoney
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function () {
+  updateSlider()
+  output.innerHTML = this.value
+}
+
+// Update the current slider value anytime the board is clicked anywhere
+board.onclick = function () {
+  updateSlider()
+  output.innerHTML = slider.value
+}
+
+function updateSlider() {
+  slider.max = playerMoney
+  if (slider.value > playerMoney) {
+    slider.value = playerMoney
+    output.innerHTML = playerMoney
+  }
+
+  if (playerMoney < 100) {
+    output.classList = "hilight-red"
+  }
+}
