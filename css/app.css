@@ -73,6 +73,10 @@ p {
   max-width: 50%;
 }
 
+.display-none {
+  display: none !important;
+}
+
 .hilight-red {
   color: rgb(188, 71, 73);
   font-family: "font-2", sans-serif;

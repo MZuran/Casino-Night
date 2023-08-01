@@ -208,6 +208,7 @@ const roulette = {
       bettedAmount = bettedAmount * 36
       playerMoney = playerMoney + bettedAmount
     } else {
+      console.log('Bet Lost')
       alert(
         `La bola cae en ${rouletteNumber}\n¡La apuesta de ${bettedAmount}$ al número ${bettedNumber} perdió!`,
       )
@@ -270,7 +271,7 @@ const roulette = {
       let className = roulette.rouletteDomElementsClasses[i]
       let button = document.getElementsByClassName(className)
 
-      //The first 37 Items are the single number squares so they all share the same kind of bet
+      //The first 37 Items (including item number 0) are the single number squares so they all share the same kind of bet
       if (i < 37) {
         let squareNumber = roulette.rouletteDomElementsClasses[i]
         squareNumber = parseInt(squareNumber.replace('square', ''))
@@ -282,6 +283,62 @@ const roulette = {
           let amount = parseInt(document.getElementById('demo').innerText)
           roulette.makeBet('number', amount, squareNumber)
         })
+      }
+
+      //The items 37 through 39 are the row bets
+      if (i >= 37 && i <= 39) {
+        button[0].addEventListener('click', function () {
+          console.log('Im a row!')
+        })
+      }
+
+      //The items 40 through 42 are the dozen bets
+      if (i >= 40 && i <= 42) {
+        button[0].addEventListener('click', function () {
+          console.log('Im a dozen!')
+        })
+      }
+
+      //The rest of the unique bets are here
+      switch (className) {
+        case 'firstHalfSquare':
+          button[0].addEventListener('click', function () {
+            console.log("Im the first half square!")
+          })
+          break
+
+          case 'secondHalfSquare':
+          button[0].addEventListener('click', function () {
+            console.log("Im the second half square!")
+          })
+          break
+
+          case 'evenSquare':
+          button[0].addEventListener('click', function () {
+            console.log("Im the even square!")
+          })
+          break
+
+          case 'oddSquare':
+          button[0].addEventListener('click', function () {
+            console.log("Im the odd square!")
+          })
+          break
+
+          case 'redSquare':
+          button[0].addEventListener('click', function () {
+            console.log("Im the red square!")
+          })
+          break
+
+          case 'blackSquare':
+          button[0].addEventListener('click', function () {
+            console.log("Im the black square!")
+          })
+          break
+
+        default:
+          break
       }
     }
   },
@@ -337,7 +394,7 @@ const roulette = {
           usedPredefinedAmount = true
         }
 
-        if (!predefinedParameter) {
+        if (!predefinedParameter && predefinedParameter != 0) {
           number = prompt('¿A qué número desea apostar? Default: 0', 0)
           if (!number) {
             number = 0
@@ -446,6 +503,7 @@ const roulette = {
     }
     alert(`Dinero restante: ${playerMoney}`)
     betList = []
+    updateSlider()
   },
 }
 
@@ -480,6 +538,14 @@ function updateSlider() {
   }
 
   if (playerMoney < 100) {
-    output.classList = "hilight-red"
+    output.classList = 'hilight-red'
+  } else {
+    output.classList = ''
+  }
+
+  if (playerMoney == 0) {
+    slider.classList = 'display-none'
+  } else {
+    slider.classList = 'slider'
   }
 }

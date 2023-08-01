@@ -45,4 +45,8 @@
   max-width: 50%;
 }
 
+.display-none {
+  display: none !important;
+}
+
 /*# sourceMappingURL=utility-classes.css.map */
