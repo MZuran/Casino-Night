@@ -2,18 +2,6 @@
 let playerMoney = parseInt(1000)
 
 //************************************************* Helper Universal Functions *************************************************
-function isEven(number) {
-  if (number == 0) {
-    return false
-  }
-
-  if (number % 2 === 0) {
-    return true
-  } else {
-    return false
-  }
-}
-
 function validAmount(money, usedPredefinedAmount) {
   if ((money < 1 || money > playerMoney) && !usedPredefinedAmount) {
     return false
@@ -66,6 +54,12 @@ const roulette = {
     31,
     33,
     35,
+  ],
+
+  numberRows: [
+    [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36],
+    [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35],
+    [1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34],
   ],
 
   rouletteDomElementsClasses: [
@@ -121,10 +115,19 @@ const roulette = {
   ],
 
   //||||||||||||||||||||||Helper roulette functions||||||||||||||||||||||
-  betRewards: function(rouletteNumber, betType, bettedAmount, bettedParameter, rewardMultiplier, winnerBet) {
+  betRewards: function (
+    rouletteNumber,
+    betType,
+    bettedAmount,
+    bettedParameter,
+    rewardMultiplier,
+    winnerBet,
+  ) {
     if (winnerBet) {
       alert(
-        `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} ganó ${bettedAmount * rewardMultiplier}$`,
+        `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} ganó ${
+          bettedAmount * rewardMultiplier
+        }$`,
       )
       playerMoney = playerMoney + bettedAmount * rewardMultiplier
     } else {
@@ -132,7 +135,6 @@ const roulette = {
         `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} perdió ${bettedAmount}$`,
       )
     }
-    
   },
 
   getSliderNumber: function () {
@@ -198,6 +200,34 @@ const roulette = {
     return 'error'
   },
 
+  row: function (rouletteNumber) {
+    if (rouletteNumber == 0) {
+      return 0
+    } else if (this.numberRows[0].includes(rouletteNumber)) {
+      return 1
+    } else if (this.numberRows[1].includes(rouletteNumber)) {
+      return 2
+    } else if (this.numberRows[2].includes(rouletteNumber)) {
+      return 3
+    }
+
+    alert('Error in roulette.row()')
+    console.log('Error in roulette.row()')
+    return 'error'
+  },
+
+  whichHalf: function (rouletteNumber) {
+    if (rouletteNumber === 0) {
+      return 0
+    } else if (rouletteNumber >= 1 && rouletteNumber <= 18) {
+      return 1
+    } else if (rouletteNumber >= 19 && rouletteNumber <= 36) {
+      return 2
+    } else {
+      return 'error'
+    }
+  },
+
   convertColorToEnglish: function (color) {
     switch (color) {
       case 'rojo':
@@ -218,20 +248,34 @@ const roulette = {
 
   oddEven: function (x) {
     if (x === 0) {
-      return 'zero';
+      return 'zero'
     } else if (x % 2 === 0) {
-      return 'even';
+      return 'even'
     } else {
-      return 'odd';
+      return 'odd'
     }
   },
 
   //||||||||||||||||||||||Specific bet types||||||||||||||||||||||
   singleNumberBet: function (rouletteNumber, bettedAmount, bettedNumber) {
     if (rouletteNumber == bettedNumber) {
-      roulette.betRewards(rouletteNumber, 'number', bettedAmount, bettedNumber, 35, true)
+      roulette.betRewards(
+        rouletteNumber,
+        'number',
+        bettedAmount,
+        bettedNumber,
+        35,
+        true,
+      )
     } else {
-      roulette.betRewards(rouletteNumber, 'number', bettedAmount, bettedNumber, 35, false)
+      roulette.betRewards(
+        rouletteNumber,
+        'number',
+        bettedAmount,
+        bettedNumber,
+        35,
+        false,
+      )
     }
   },
 
@@ -240,9 +284,23 @@ const roulette = {
     bettedColor = this.convertColorToEnglish(bettedColor)
 
     if (landedColor == bettedColor) {
-      roulette.betRewards(rouletteNumber, 'color', bettedAmount, bettedColor, 2, true)
+      roulette.betRewards(
+        rouletteNumber,
+        'color',
+        bettedAmount,
+        bettedColor,
+        2,
+        true,
+      )
     } else {
-      roulette.betRewards(rouletteNumber, 'color', bettedAmount, bettedColor, 2, false)
+      roulette.betRewards(
+        rouletteNumber,
+        'color',
+        bettedAmount,
+        bettedColor,
+        2,
+        false,
+      )
     }
   },
 
@@ -265,18 +323,92 @@ const roulette = {
     }
 
     if (isBettedDozenCorrect) {
-      roulette.betRewards(rouletteNumber, 'dozen', bettedAmount, bettedDozen, 2, true)
+      roulette.betRewards(
+        rouletteNumber,
+        'dozen',
+        bettedAmount,
+        bettedDozen,
+        2,
+        true,
+      )
     } else {
-      roulette.betRewards(rouletteNumber, 'dozen', bettedAmount, bettedDozen, 2, false)
+      roulette.betRewards(
+        rouletteNumber,
+        'dozen',
+        bettedAmount,
+        bettedDozen,
+        2,
+        false,
+      )
     }
   },
 
   oddEvenBet: function (rouletteNumber, bettedAmount, bettedOddEven) {
     let result = roulette.oddEven(rouletteNumber)
     if (result == bettedOddEven) {
-      roulette.betRewards(rouletteNumber, 'odd or even', bettedAmount, bettedOddEven, 2, true)
+      roulette.betRewards(
+        rouletteNumber,
+        'odd or even',
+        bettedAmount,
+        bettedOddEven,
+        2,
+        true,
+      )
     } else {
-      roulette.betRewards(rouletteNumber, 'odd or even', bettedAmount, bettedOddEven, 2, false)
+      roulette.betRewards(
+        rouletteNumber,
+        'odd or even',
+        bettedAmount,
+        bettedOddEven,
+        2,
+        false,
+      )
+    }
+  },
+
+  rowBet: function (rouletteNumber, bettedAmount, bettedRow) {
+    let resultRow = roulette.row(rouletteNumber)
+    if (bettedRow == resultRow) {
+      roulette.betRewards(
+        rouletteNumber,
+        'row',
+        bettedAmount,
+        bettedRow,
+        2,
+        true,
+      )
+    } else {
+      roulette.betRewards(
+        rouletteNumber,
+        'row',
+        bettedAmount,
+        bettedRow,
+        2,
+        false,
+      )
+    }
+  },
+
+  halvesBet: function (rouletteNumber, bettedAmount, bettedHalf) {
+    let resultHalf = this.whichHalf(rouletteNumber)
+    if (resultHalf == bettedHalf) {
+      roulette.betRewards(
+        rouletteNumber,
+        'half',
+        bettedAmount,
+        bettedHalf,
+        2,
+        true,
+      )
+    } else {
+      roulette.betRewards(
+        rouletteNumber,
+        'half',
+        bettedAmount,
+        bettedHalf,
+        2,
+        false,
+      )
     }
   },
 
@@ -302,8 +434,22 @@ const roulette = {
 
       //The items 37 through 39 are the row bets
       if (i >= 37 && i <= 39) {
+        let rowNumber = roulette.rouletteDomElementsClasses[i]
+        switch (rowNumber) {
+          case 'firstRowSquare':
+            rowNumber = 1
+            break
+          case 'secondRowSquare':
+            rowNumber = 2
+            break
+          case 'thirdRowSquare':
+            rowNumber = 3
+            break
+        }
         button[0].addEventListener('click', function () {
-          console.log('Im a row!')
+          //console.log(rowNumber)
+          let amount = roulette.getSliderNumber()
+          roulette.makeBet('row', amount, rowNumber)
         })
       }
 
@@ -332,13 +478,15 @@ const roulette = {
       switch (className) {
         case 'firstHalfSquare':
           button[0].addEventListener('click', function () {
-            console.log('Im the first half square!')
+            let amount = roulette.getSliderNumber()
+            roulette.makeBet('half', amount, 1)
           })
           break
 
         case 'secondHalfSquare':
           button[0].addEventListener('click', function () {
-            console.log('Im the second half square!')
+            let amount = roulette.getSliderNumber()
+            roulette.makeBet('half', amount, 2)
           })
           break
 
@@ -374,6 +522,11 @@ const roulette = {
           break
       }
     }
+
+    let rouletteButton = document.getElementById("rouletteButton")
+    rouletteButton.addEventListener('click', function () {
+      roulette.runBet()
+    })
   },
 
   //||||||||||||||||||||||Making the bets, storing them on an array and running them||||||||||||||||||||||
@@ -428,6 +581,23 @@ const roulette = {
           this.makeBet()
         }
         //********************************End of Casetype Color ********************************
+        break
+
+      case 'half':
+      case 'halves':
+      case 'mitad':
+        //********************************Start of Casetype Half ********************************
+        if (validAmount(amount, usedPredefinedAmount)) {
+          //halvesBet: function (rouletteNumber, bettedAmount, bettedHalf)
+          betList.push([betType, amount, predefinedParameter])
+          alert('¡Apuesta aceptada!')
+          console.log(betList)
+        } else {
+          alert('¡Datos Inválidos!')
+          playerMoney = playerMoney + amount
+          this.makeBet()
+        }
+        //********************************End of Casetype Half ********************************
         break
 
       case 'number':
@@ -531,6 +701,24 @@ const roulette = {
         //********************************End of Casetype odd ********************************
         break
 
+      case 'row':
+      case 'fila':
+      case 'filas':
+      case 'rows':
+        //********************************Start of Casetype row ********************************
+        if (validAmount(amount, usedPredefinedAmount)) {
+          //rowBet: function (rouletteNumber, bettedAmount, bettedRow)
+          betList.push([betType, amount, predefinedParameter])
+          alert('¡Apuesta aceptada!')
+          console.log(betList)
+        } else {
+          alert('¡Datos Inválidos!')
+          playerMoney = playerMoney + amount
+          this.makeBet()
+        }
+        //********************************End of Casetype row ********************************
+        break
+
       case 'cancel':
       case 'cancelar':
       case null:
@@ -563,6 +751,13 @@ const roulette = {
           this.colorBet(rouletteNumberResult, betList[i][1], betList[i][2])
           break
 
+        case 'half':
+        case 'halves':
+        case 'mitad':
+          //halvesBet: function (rouletteNumber, bettedAmount, bettedHalf)
+          this.halvesBet(rouletteNumberResult, betList[i][1], betList[i][2])
+          break
+
         case 'number':
         case 'numero':
         case 'número':
@@ -581,7 +776,14 @@ const roulette = {
           //oddEvenBet: function (rouletteNumber, bettedAmount, bettedOddEven)
           this.oddEvenBet(rouletteNumberResult, betList[i][1], betList[i][2])
           break
-        break
+
+        case 'row':
+        case 'fila':
+        case 'filas':
+        case 'rows':
+          //rowBet: function (rouletteNumber, bettedAmount, bettedRow)
+          this.rowBet(rouletteNumberResult, betList[i][1], betList[i][2])
+          break
 
         case 'dozen':
         case 'dozens':
