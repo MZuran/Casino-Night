@@ -121,6 +121,11 @@ const roulette = {
   ],
 
   //Helper roulette functions
+  getSliderNumber: function () {
+    let amount = parseInt(document.getElementById('demo').innerText)
+    return amount
+  },
+
   validColor: function (color) {
     //color = prompt()
     color = color.toLowerCase()
@@ -279,8 +284,8 @@ const roulette = {
 
         //THIS IS WHAT ACTUALLY HAPPENS WHEN YOU CLICK A NUMBER NOW
         button[0].addEventListener('click', function () {
-          console.log(squareNumber)
-          let amount = parseInt(document.getElementById('demo').innerText)
+          //console.log(squareNumber)
+          let amount = roulette.getSliderNumber()
           roulette.makeBet('number', amount, squareNumber)
         })
       }
@@ -295,7 +300,23 @@ const roulette = {
       //The items 40 through 42 are the dozen bets
       if (i >= 40 && i <= 42) {
         button[0].addEventListener('click', function () {
-          console.log('Im a dozen!')
+          //console.log('Im a dozen!')
+          let amount = roulette.getSliderNumber()
+          //console.log(this.classList[0])
+
+          switch (this.classList[0]) {
+            case 'firstDozenSquare':
+              roulette.makeBet('dozen', amount, 1)
+              break
+
+            case 'secondDozenSquare':
+              roulette.makeBet('dozen', amount, 2)
+              break
+
+            case 'thirdDozenSquare':
+              roulette.makeBet('dozen', amount, 3)
+              break
+          }
         })
       }
 
@@ -303,37 +324,37 @@ const roulette = {
       switch (className) {
         case 'firstHalfSquare':
           button[0].addEventListener('click', function () {
-            console.log("Im the first half square!")
+            console.log('Im the first half square!')
           })
           break
 
-          case 'secondHalfSquare':
+        case 'secondHalfSquare':
           button[0].addEventListener('click', function () {
-            console.log("Im the second half square!")
+            console.log('Im the second half square!')
           })
           break
 
-          case 'evenSquare':
+        case 'evenSquare':
           button[0].addEventListener('click', function () {
-            console.log("Im the even square!")
+            console.log('Im the even square!')
           })
           break
 
-          case 'oddSquare':
+        case 'oddSquare':
           button[0].addEventListener('click', function () {
-            console.log("Im the odd square!")
+            console.log('Im the odd square!')
           })
           break
 
-          case 'redSquare':
+        case 'redSquare':
           button[0].addEventListener('click', function () {
-            console.log("Im the red square!")
+            console.log('Im the red square!')
           })
           break
 
-          case 'blackSquare':
+        case 'blackSquare':
           button[0].addEventListener('click', function () {
-            console.log("Im the black square!")
+            console.log('Im the black square!')
           })
           break
 
@@ -431,11 +452,16 @@ const roulette = {
       case 'docena':
       case 'docenas':
         //********************************Start of Casetype Dozen ********************************
-        let dozen = prompt(
-          '¿A cuál docena desea apostar?\n\n1: Primera docena\n2: Segunda docena\n3: Tercer docena',
-          1,
-        )
-        dozen = parseInt(dozen)
+        let dozen
+        if (!predefinedParameter) {
+          dozen = prompt(
+            '¿A cuál docena desea apostar?\n\n1: Primera docena\n2: Segunda docena\n3: Tercer docena',
+            1,
+          )
+          dozen = parseInt(dozen)
+        } else {
+          dozen = predefinedParameter
+        }
         if ((dozen == 1 || dozen == 2 || dozen == 3) && validAmount(amount)) {
           //dozenBet: function(rouletteNumber, bettedAmount, bettedDozen)
           betList.push([betType, amount, dozen])
