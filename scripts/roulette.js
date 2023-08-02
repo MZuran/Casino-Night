@@ -893,6 +893,7 @@ function toastifyAlert(text, alertType, keepApart) {
       text: text,
       className: alertType,
       position: 'left',
+      duration: 5000
     }).showToast()
   } else {
     Toastify({
