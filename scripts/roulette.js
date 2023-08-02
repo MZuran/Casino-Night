@@ -129,24 +129,30 @@ const roulette = {
           bettedAmount * rewardMultiplier
         }$`,
       ) */
-      toastifyAlert(`La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} ganó ${
-        bettedAmount * rewardMultiplier
-      }$`, "winner")
+      toastifyAlert(
+        `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} ganó ${
+          bettedAmount * rewardMultiplier
+        }$`,
+        'winner',
+      )
       playerMoney = playerMoney + bettedAmount * rewardMultiplier
     } else {
       /* alert(
         `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} perdió ${bettedAmount}$`,
       ) */
-      toastifyAlert(`La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} perdió ${bettedAmount}$`, "loser")
+      toastifyAlert(
+        `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} perdió ${bettedAmount}$`,
+        'loser',
+      )
     }
   },
 
-  sumSecondParameters: function(betList) {
-    let sum = 0;
+  sumSecondParameters: function (betList) {
+    let sum = 0
     for (const bet of betList) {
-      sum += bet[1];
+      sum += bet[1]
     }
-    return sum;
+    return sum
   },
 
   getSliderNumber: function () {
@@ -535,21 +541,21 @@ const roulette = {
       }
     }
 
-    let rouletteButton = document.getElementById("rouletteButton")
+    let rouletteButton = document.getElementById('rouletteButton')
     rouletteButton.addEventListener('click', function () {
       roulette.runBet()
     })
 
-    let rouletteCancelBetButton = document.getElementById("cancelBetButton")
+    let rouletteCancelBetButton = document.getElementById('cancelBetButton')
     rouletteCancelBetButton.addEventListener('click', function () {
       playerMoney = playerMoney + roulette.sumSecondParameters(betList)
       betList = []
       updateSlider()
       /* alert("Apuestas Canceladas") */
-      toastifyAlert("Apuestas Canceladas", "notification")
+      toastifyAlert('Apuestas Canceladas', 'notification')
     })
   },
-  
+
   //||||||||||||||||||||||Making the bets, storing them on an array and running them||||||||||||||||||||||
   makeBet: function (predefinedBetType, predefinedAmount, predefinedParameter) {
     let betType
@@ -564,6 +570,10 @@ const roulette = {
       betType = predefinedBetType
     }
 
+    if (predefinedAmount === 0) {
+      toastifyAlert('¡Apuesta Rechazada!', 'loser')
+      return 'Player Selected 0 dollars'
+    }
     amount = this.askForBettedAmount(predefinedAmount)
 
     let usedPredefinedAmount = false
@@ -595,7 +605,7 @@ const roulette = {
         ) {
           betList.push([betType, amount, color])
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert("¡Apuesta Aceptada!", "notification")
+          toastifyAlert('¡Apuesta Aceptada!', 'notification')
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
@@ -613,7 +623,7 @@ const roulette = {
           //halvesBet: function (rouletteNumber, bettedAmount, bettedHalf)
           betList.push([betType, amount, predefinedParameter])
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert("¡Apuesta Aceptada!", "notification")
+          toastifyAlert('¡Apuesta Aceptada!', 'notification')
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
@@ -645,7 +655,7 @@ const roulette = {
         ) {
           betList.push([betType, amount, number])
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert("¡Apuesta Aceptada!", "notification")
+          toastifyAlert('¡Apuesta Aceptada!', 'notification')
           console.log(betList)
           updateSlider()
         } else {
@@ -684,7 +694,7 @@ const roulette = {
           //dozenBet: function(rouletteNumber, bettedAmount, bettedDozen)
           betList.push([betType, amount, dozen])
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert("¡Apuesta Aceptada!", "notification")
+          toastifyAlert('¡Apuesta Aceptada!', 'notification')
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
@@ -701,7 +711,7 @@ const roulette = {
           //evenOddBet: function(rouletteNumber, bettedAmount, bettedEvenOdd)
           betList.push([betType, amount, 'odd'])
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert("¡Apuesta Aceptada!", "notification")
+          toastifyAlert('¡Apuesta Aceptada!', 'notification')
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
@@ -718,7 +728,7 @@ const roulette = {
           //evenOddBet: function(rouletteNumber, bettedAmount, bettedEvenOdd)
           betList.push([betType, amount, 'even'])
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert("¡Apuesta Aceptada!", "notification")
+          toastifyAlert('¡Apuesta Aceptada!', 'notification')
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
@@ -737,7 +747,7 @@ const roulette = {
           //rowBet: function (rouletteNumber, bettedAmount, bettedRow)
           betList.push([betType, amount, predefinedParameter])
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert("¡Apuesta Aceptada!", "notification")
+          toastifyAlert('¡Apuesta Aceptada!', 'notification')
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
@@ -768,7 +778,11 @@ const roulette = {
   runBet: function () {
     let rouletteNumberResult = this.spin()
     /* alert(`¡La bola cayó en ${rouletteNumberResult}!`) */
-    toastifyAlert(`¡La bola cayó en ${rouletteNumberResult}!`, "notification", true)
+    toastifyAlert(
+      `¡La bola cayó en ${rouletteNumberResult}!`,
+      'notification',
+      true,
+    )
 
     //betList formatting:
     //betList[Bet Index][The Type of Bet, Betted Amount, Parameter Of Bet]
@@ -824,7 +838,7 @@ const roulette = {
       }
     }
     /* alert(`Dinero restante: ${playerMoney}`) */
-    toastifyAlert(`Dinero restante: ${playerMoney}`, "notification", true)
+    toastifyAlert(`Dinero restante: ${playerMoney}`, 'notification', true)
     betList = []
     updateSlider()
   },
@@ -878,12 +892,12 @@ function toastifyAlert(text, alertType, keepApart) {
     Toastify({
       text: text,
       className: alertType,
-      position: "left"
-    }).showToast();
+      position: 'left',
+    }).showToast()
   } else {
     Toastify({
       text: text,
       className: alertType,
-    }).showToast();
+    }).showToast()
   }
 }
