@@ -454,6 +454,24 @@ p {
   cursor: pointer;
 }
 
+.toastify {
+  font-family: "font-1", sans-serif;
+  font-size-adjust: inherit;
+  color: rgb(242, 232, 207);
+}
+
+.notification {
+  background: linear-gradient(to top left, #6b6965, #a5a093);
+}
+
+.winner {
+  background: linear-gradient(to bottom right, rgb(106, 153, 78), #4e6643);
+}
+
+.loser {
+  background: linear-gradient(to bottom right, rgb(188, 71, 73), #773d41);
+}
+
 .index-home {
   width: 100%;
   background-color: rgb(56, 102, 65);

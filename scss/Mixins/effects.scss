@@ -1,8 +1,15 @@
 @mixin hoverBackgroundAnimation($color, $time) {
+  transition: $time;
+  &:hover {
+    background-color: $color;
     transition: $time;
-    &:hover{
-        background-color: $color;
-        transition: $time;
-        cursor: pointer;
-    }
+    cursor: pointer;
   }
+}
+
+@mixin textBorder($fontColor,$strokeColor,$size) {
+  /* text-shadow: 2px 0 $color, -2px 0 $color, 0 2px $color, 0 -2px $color,
+    1px 1px $color, -1px -1px $color, 1px -1px $color, -1px 1px $color; */
+    -webkit-text-stroke: $size $strokeColor;
+    color: $fontColor;
+}

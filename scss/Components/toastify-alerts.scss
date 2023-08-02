@@ -1,0 +1,17 @@
+.toastify {
+    font-family: 'font-1', sans-serif;
+    font-size-adjust: inherit;
+    color: $color-white;
+}
+
+.notification {
+    background: linear-gradient(to top left, mix($color-black, $color-white, 70), mix($color-black, $color-white, 40));
+}
+
+.winner {
+    background: linear-gradient(to bottom right, $color-green, mix($color-green, $color-black));
+}
+
+.loser {
+    background: linear-gradient(to bottom right, $color-red, mix($color-red, $color-black));
+}
