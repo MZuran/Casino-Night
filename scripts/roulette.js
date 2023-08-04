@@ -847,6 +847,22 @@ const roulette = {
 //************************************************* Events *************************************************
 roulette.prepareEvents()
 
+let seeOptions = false;
+let optionsButton = document.getElementById('optionsButton')
+optionsButton.addEventListener('click', function () {
+  if (seeOptions) {seeOptions = false} else {seeOptions = true}
+
+  let accesibilityControlsContainer = document.getElementById('accesibilityControlsContainer')
+
+  if (seeOptions) {
+    accesibilityControlsContainer.classList = "collapsing-item"
+    setTimeout(function() { accesibilityControlsContainer.classList="display-none" }, 500);
+  } else {
+    accesibilityControlsContainer.classList = "collapsing-item"
+    setTimeout(function() { accesibilityControlsContainer.classList="visible-item" }, 50);
+  }
+})
+
 //************************************************* Sliders *************************************************
 //||||||||||||||||||||||Player Money Slider||||||||||||||||||||||
 let playerMoneySlider = document.getElementById('playerMoneySlider')
@@ -890,13 +906,19 @@ function updateSlider() {
 
 //||||||||||||||||||||||Scale Slider||||||||||||||||||||||
 let scaleSlider = document.getElementById('scaleSlider')
-scaleSlider.onclick = function () {
+scaleSlider.value = 30
+
+function updateScaleSlider() {
   let scaleValue = scaleSlider.value
   //577.5 / 172
   let parent = document.getElementById('rouletteParent');
 
   parent.style.width = `${scaleValue * 1.5}vw`;
   parent.style.height = `${scaleValue}vh`;
+}
+updateScaleSlider()
+scaleSlider.onclick = function () {
+  updateScaleSlider()
 }
 //************************************************* Toastify Alerts *************************************************
 function toastifyAlert(text, alertType, keepApart) {

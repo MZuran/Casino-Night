@@ -1,12 +1,46 @@
-.visible-item {
-  opacity: 1;
-  transition: 0.5s linear;
+.optionsButton {
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  /* border: none; */
+  width: 2.5vw;
+  height: 2.5vw;
+  min-width: 30px;
+  min-height: 30px;
+  background-size: cover;
+  background-image: url(../../media/images/options.png);
+  position: fixed;
+  bottom: 1vw;
+  left: 1vw;
+  transition: 0.5s;
+}
+.optionsButton:hover {
+  transition: 0.5s;
+  transform: rotate(90deg);
+  filter: invert(20%) sepia(6%) saturate(694%) hue-rotate(185deg) brightness(89%) contrast(93%);
 }
 
-.hidden-item {
+.optionsButtonContainer {
+  width: 25px;
+  height: 25px;
+}
+
+.display-none {
+  display: none;
+  transition: 0.25s ease-in-out;
+}
+
+.visible-item {
+  opacity: 1;
+  transition: 0.25s ease-in-out;
+  display: flex;
+}
+
+.collapsing-item {
   opacity: 0;
   height: 0;
-  transition: 0.5s linear;
+  transition: 0.25s ease-in-out;
+  display: flex;
+  transform: translateY(-20px);
 }
 
 #accesibilityControlsContainer {
@@ -14,21 +48,6 @@
   flex-direction: column;
   align-items: center;
   display: flex;
-}
-
-.size-1 {
-  width: 2.5vw;
-  height: 2.5vw;
-}
-
-.size-2 {
-  width: 3vw;
-  height: 3vw;
-}
-
-.size-3 {
-  width: 3.5vw;
-  height: 3.5vw;
 }
 
 /*# sourceMappingURL=accesibility-controls.css.map */
