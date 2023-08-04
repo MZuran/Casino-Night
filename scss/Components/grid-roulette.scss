@@ -73,6 +73,8 @@ $border-smoothing: 50%;
 .rouletteParent {
     margin: 10px;
 
+    transition: .5s;
+
     display: grid;
     grid-template-columns: repeat(14, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -96,6 +98,9 @@ $border-smoothing: 50%;
         & p {
             font-family: 'font-3', sans-serif;
             font-size-adjust: inherit;
+            white-space: nowrap;
+
+            font-size: 1em;
         }
     }
     }

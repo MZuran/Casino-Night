@@ -156,7 +156,7 @@ const roulette = {
   },
 
   getSliderNumber: function () {
-    let amount = parseInt(document.getElementById('demo').innerText)
+    let amount = parseInt(document.getElementById('playerMoneySliderNumberDisplay').innerText)
     return amount
   },
 
@@ -847,16 +847,17 @@ const roulette = {
 //************************************************* Events *************************************************
 roulette.prepareEvents()
 
-//************************************************* Slider *************************************************
-let slider = document.getElementById('myRange')
-let output = document.getElementById('demo')
+//************************************************* Sliders *************************************************
+//||||||||||||||||||||||Player Money Slider||||||||||||||||||||||
+let playerMoneySlider = document.getElementById('playerMoneySlider')
+let output = document.getElementById('playerMoneySliderNumberDisplay')
 let board = document.getElementById('rouletteParent')
-output.innerHTML = slider.value
+output.innerHTML = playerMoneySlider.value
 
-document.getElementById('myRange').max = playerMoney
+document.getElementById('playerMoneySlider').max = playerMoney
 
 // Update the current slider value (each time you drag the slider handle)
-slider.oninput = function () {
+playerMoneySlider.oninput = function () {
   updateSlider()
   output.innerHTML = this.value
 }
@@ -864,13 +865,13 @@ slider.oninput = function () {
 // Update the current slider value anytime the board is clicked anywhere
 board.onclick = function () {
   updateSlider()
-  output.innerHTML = slider.value
+  output.innerHTML = playerMoneySlider.value
 }
 
 function updateSlider() {
-  slider.max = playerMoney
-  if (slider.value > playerMoney) {
-    slider.value = playerMoney
+  playerMoneySlider.max = playerMoney
+  if (playerMoneySlider.value > playerMoney) {
+    playerMoneySlider.value = playerMoney
     output.innerHTML = playerMoney
   }
 
@@ -881,10 +882,21 @@ function updateSlider() {
   }
 
   if (playerMoney == 0) {
-    slider.classList = 'display-none'
+    playerMoneySlider.classList = 'display-none'
   } else {
-    slider.classList = 'slider'
+    playerMoneySlider.classList = 'slider'
   }
+}
+
+//||||||||||||||||||||||Scale Slider||||||||||||||||||||||
+let scaleSlider = document.getElementById('scaleSlider')
+scaleSlider.onclick = function () {
+  let scaleValue = scaleSlider.value
+  //577.5 / 172
+  let parent = document.getElementById('rouletteParent');
+
+  parent.style.width = `${scaleValue * 1.5}vw`;
+  parent.style.height = `${scaleValue}vh`;
 }
 //************************************************* Toastify Alerts *************************************************
 function toastifyAlert(text, alertType, keepApart) {

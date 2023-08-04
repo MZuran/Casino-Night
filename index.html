@@ -5,86 +5,130 @@
     <title>Document</title>
 
     <!-- Syles -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <link rel="stylesheet" href="css/app.css" />
   </head>
   <body>
     <main class="index-home flex-dir-column absolute-center">
+      <div id="tableParent">
+        <h1>¡Hace click en el tablero para apostar!</h1>
 
-    <div id="tableParent">
-      <h1>¡Hace click en el tablero para apostar!</h1>
-      <!-- Player Money Slider -->
-      <div class="slidecontainer">
-        <p>$ <span id="demo"></span></p>
-        <input type="range" min="0" class="slider" id="myRange">
-      </div>
-      <!--  End of Player Money Slider -->
-
-      <!-- New Roulette Object  -->
-      <div class="rouletteParent" id="rouletteParent">
-        <div class="square1 red-square"><p>1</p></div>
-        <div class="square2 black-square"><p>2</p></div>
-        <div class="square3 red-square"><p>3</p></div>
-        <div class="square4 black-square"><p>4</p></div>
-        <div class="square5 red-square"><p>5</p></div>
-        <div class="square6 black-square"><p>6</p></div>
-        <div class="square7 red-square"><p>7</p></div>
-        <div class="square8 black-square"><p>8</p></div>
-        <div class="square9 red-square"><p>9</p></div>
-        <div class="square10 black-square"><p>10</p></div>
-        <div class="square11 black-square"><p>11</p></div>
-        <div class="square12 red-square"><p>12</p></div>
-        <div class="square13 black-square"><p>13</p></div>
-        <div class="square14 red-square"><p>14</p></div>
-        <div class="square15 black-square"><p>15</p></div>
-        <div class="square16 red-square"><p>16</p></div>
-        <div class="square17 black-square"><p>17</p></div>
-        <div class="square18 red-square"><p>18</p></div>
-        <div class="square19 red-square"><p>19</p></div>
-        <div class="square20 black-square"><p>20</p></div>
-        <div class="square21 red-square"><p>21</p></div>
-        <div class="square22 black-square"><p>22</p></div>
-        <div class="square23 red-square"><p>23</p></div>
-        <div class="square24 black-square"><p>24</p></div>
-        <div class="square25 red-square"><p>25</p></div>
-        <div class="square26 black-square"><p>26</p></div>
-        <div class="square27 red-square"><p>27</p></div>
-        <div class="square28 black-square"><p>28</p></div>
-        <div class="square29 black-square"><p>29</p></div>
-        <div class="square30 red-square"><p>30</p></div>
-        <div class="square31 black-square"><p>31</p></div>
-        <div class="square32 red-square"><p>32</p></div>
-        <div class="square33 black-square"><p>33</p></div>
-        <div class="square34 red-square"><p>34</p></div>
-        <div class="square35 black-square"><p>35</p></div>
-        <div class="square36 red-square"><p>36</p></div>
-        <div class="square0 green-square smooth-top-left smooth-bottom-left"><p>0</p></div>
-        <div class="firstRowSquare smooth-top-right smooth-bottom-right"><p>2 a 1</p></div>
-        <div class="secondRowSquare smooth-top-right smooth-bottom-right"><p>2 a 1</p></div>
-        <div class="thirdRowSquare smooth-top-right smooth-bottom-right"><p>2 a 1</p></div>
-        <div class="firstDozenSquare smooth-top-left smooth-top-right"><p>Docena 1</p></div>
-        <div class="secondDozenSquare smooth-top-left smooth-top-right"><p>Docena 2</p></div>
-        <div class="thirdDozenSquare smooth-top-left smooth-top-right"><p>Docena 3</p></div>
-        <div class="firstHalfSquare smooth-bottom-left"><p>1 - 18</p></div>
-        <div class="evenSquare"><p>Par</p></div>
-        <div class="redSquare"><p>Rojo</p></div>
-        <div class="blackSquare"><p>Negro</p></div>
-        <div class="oddSquare"><p>Impar</p></div>
-        <div class="secondHalfSquare smooth-bottom-right"><p>19 - 36</p></div>
+        <!-- Player Money Slider -->
+        <div class="slidecontainer">
+          <p>
+            $
+            <span id="playerMoneySliderNumberDisplay"></span>
+          </p>
+          <input type="range" min="0" class="slider" id="playerMoneySlider" />
         </div>
-      <!-- End of New Roulette Object -->
+        <!--  End of Player Money Slider -->
 
-      <!-- Roulette Buttons -->
-      <div class="flex-dir-row">
-        <button type="button" class="rouletteButton" id="rouletteButton"><p>¡Girar Ruleta!</p></button>
-        <button type="button" class="rouletteButton" id="cancelBetButton"><p>Cancelar Apuesta</p></button>
+        <!-- New Roulette Object  -->
+        <div class="rouletteParent" id="rouletteParent">
+          <div class="square1 red-square"><p>1</p></div>
+          <div class="square2 black-square"><p>2</p></div>
+          <div class="square3 red-square"><p>3</p></div>
+          <div class="square4 black-square"><p>4</p></div>
+          <div class="square5 red-square"><p>5</p></div>
+          <div class="square6 black-square"><p>6</p></div>
+          <div class="square7 red-square"><p>7</p></div>
+          <div class="square8 black-square"><p>8</p></div>
+          <div class="square9 red-square"><p>9</p></div>
+          <div class="square10 black-square"><p>10</p></div>
+          <div class="square11 black-square"><p>11</p></div>
+          <div class="square12 red-square"><p>12</p></div>
+          <div class="square13 black-square"><p>13</p></div>
+          <div class="square14 red-square"><p>14</p></div>
+          <div class="square15 black-square"><p>15</p></div>
+          <div class="square16 red-square"><p>16</p></div>
+          <div class="square17 black-square"><p>17</p></div>
+          <div class="square18 red-square"><p>18</p></div>
+          <div class="square19 red-square"><p>19</p></div>
+          <div class="square20 black-square"><p>20</p></div>
+          <div class="square21 red-square"><p>21</p></div>
+          <div class="square22 black-square"><p>22</p></div>
+          <div class="square23 red-square"><p>23</p></div>
+          <div class="square24 black-square"><p>24</p></div>
+          <div class="square25 red-square"><p>25</p></div>
+          <div class="square26 black-square"><p>26</p></div>
+          <div class="square27 red-square"><p>27</p></div>
+          <div class="square28 black-square"><p>28</p></div>
+          <div class="square29 black-square"><p>29</p></div>
+          <div class="square30 red-square"><p>30</p></div>
+          <div class="square31 black-square"><p>31</p></div>
+          <div class="square32 red-square"><p>32</p></div>
+          <div class="square33 black-square"><p>33</p></div>
+          <div class="square34 red-square"><p>34</p></div>
+          <div class="square35 black-square"><p>35</p></div>
+          <div class="square36 red-square"><p>36</p></div>
+          <div class="square0 green-square smooth-top-left smooth-bottom-left">
+            <p>0</p>
+          </div>
+          <div class="firstRowSquare smooth-top-right smooth-bottom-right">
+            <p>2 a 1</p>
+          </div>
+          <div class="secondRowSquare smooth-top-right smooth-bottom-right">
+            <p>2 a 1</p>
+          </div>
+          <div class="thirdRowSquare smooth-top-right smooth-bottom-right">
+            <p>2 a 1</p>
+          </div>
+          <div class="firstDozenSquare smooth-top-left smooth-top-right">
+            <p>Docena 1</p>
+          </div>
+          <div class="secondDozenSquare smooth-top-left smooth-top-right">
+            <p>Docena 2</p>
+          </div>
+          <div class="thirdDozenSquare smooth-top-left smooth-top-right">
+            <p>Docena 3</p>
+          </div>
+          <div class="firstHalfSquare smooth-bottom-left"><p>1 - 18</p></div>
+          <div class="evenSquare"><p>Par</p></div>
+          <div class="redSquare"><p>Rojo</p></div>
+          <div class="blackSquare"><p>Negro</p></div>
+          <div class="oddSquare"><p>Impar</p></div>
+          <div class="secondHalfSquare smooth-bottom-right"><p>19 - 36</p></div>
+        </div>
+        <!-- End of New Roulette Object -->
+
+        <!-- Roulette Buttons -->
+        <div class="flex-dir-row">
+          <button type="button" class="rouletteButton" id="rouletteButton">
+            <p>¡Girar Ruleta!</p>
+          </button>
+          <button type="button" class="rouletteButton" id="cancelBetButton">
+            <p>Cancelar Apuesta</p>
+          </button>
+        </div>
+        <!-- End of Roulette Buttons -->
+
+        <div id="accesibilityControlsContainer">
+          <div class="slidecontainer">
+            <p>Tamaño</p>
+            <input
+              type="range"
+              min="30"
+              max="50"
+              class="slider"
+              id="scaleSlider"
+            />
+          </div>
+          <!--  End of Player Money Slider -->
+        </div>
+
       </div>
-      <!-- End of Roulette Buttons -->
-    </div>
+      <!-- End of Accesibility Controls -->
     </main>
     <!-- Scripts -->
     <script src="scripts/roulette.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
   </body>
 </html>
