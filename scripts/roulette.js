@@ -145,6 +145,7 @@ const roulette = {
         'loser',
       )
     }
+    removeAllSelectedSquareClasses()
   },
 
   sumSecondParameters: function (betList) {
@@ -436,6 +437,12 @@ const roulette = {
       let className = roulette.rouletteDomElementsClasses[i]
       let button = document.getElementsByClassName(className)
 
+      button[0].addEventListener('click', function () {
+        if (roulette.getSliderNumber()) {
+          isSelectedSquareClass(className, true)
+        }
+      })
+
       //The first 37 Items (including item number 0) are the single number squares so they all share the same kind of bet
       if (i < 37) {
         let squareNumber = roulette.rouletteDomElementsClasses[i]
@@ -553,6 +560,7 @@ const roulette = {
       updateSlider()
       /* alert("Apuestas Canceladas") */
       toastifyAlert('Apuestas Canceladas', 'notification')
+      removeAllSelectedSquareClasses()
     })
   },
 
@@ -850,19 +858,35 @@ roulette.prepareEvents()
 let seeOptions = false;
 let optionsButton = document.getElementById('optionsButton')
 optionsButton.addEventListener('click', function () {
-  if (seeOptions) {seeOptions = false} else {seeOptions = true}
-
-  let accesibilityControlsContainer = document.getElementById('accesibilityControlsContainer')
-
-  if (seeOptions) {
-    accesibilityControlsContainer.classList = "collapsing-item"
-    setTimeout(function() { accesibilityControlsContainer.classList="display-none" }, 500);
-  } else {
-    accesibilityControlsContainer.classList = "collapsing-item"
-    setTimeout(function() { accesibilityControlsContainer.classList="visible-item" }, 50);
-  }
+  toggleOptionsCollapse()
 })
 
+let resetButton = document.getElementById('restartGameButton')
+resetButton.addEventListener('click', function() {
+  toastifyAlert('Dinero Restante: 1000', "notification", true)
+  playerMoney = 1000
+  updateSlider()
+})
+
+function isSelectedSquareClass(className, isAdding) {
+  let element = document.getElementsByClassName(className);
+
+  if (element && !element[0].classList.contains("selected-square") && isAdding) {
+    element[0].classList.add("selected-square");
+  }
+
+  if (element && element[0].classList.contains("selected-square") && !isAdding) {
+    element[0].classList.remove("selected-square");
+  }
+
+}
+
+function removeAllSelectedSquareClasses() {
+  const elements = document.querySelectorAll(".selected-square");
+  elements.forEach((element) => {
+    element.classList.remove("selected-square");
+  });
+}
 //************************************************* Sliders *************************************************
 //||||||||||||||||||||||Player Money Slider||||||||||||||||||||||
 let playerMoneySlider = document.getElementById('playerMoneySlider')
@@ -927,7 +951,7 @@ function toastifyAlert(text, alertType, keepApart) {
       text: text,
       className: alertType,
       position: 'left',
-      duration: 5000
+      duration: 7500
     }).showToast()
   } else {
     Toastify({
@@ -936,3 +960,16 @@ function toastifyAlert(text, alertType, keepApart) {
     }).showToast()
   }
 }
+
+//************************************************* Options *************************************************
+function toggleOptionsCollapse() {
+  const collapsibleElement = document.getElementById("collapsibleOptionsElement");
+  collapsibleElement.classList.toggle("expanded");
+
+  if (collapsibleElement.classList.contains("expanded")) {
+    collapsibleElement.style.display = "flex";
+  } else {
+    setTimeout(() => (collapsibleElement.style.display = "none"), 300);
+  }
+}
+toggleOptionsCollapse()

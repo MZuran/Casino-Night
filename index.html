@@ -96,7 +96,7 @@
         <!-- End of New Roulette Object -->
 
         <!-- Roulette Buttons -->
-        <div class="flex-dir-row">
+        <div class="flex-dir-row margin-ten">
           <button type="button" class="rouletteButton" id="rouletteButton">
             <p>¡Girar Ruleta!</p>
           </button>
@@ -109,7 +109,8 @@
         <div type="button" class="optionsButton" id="optionsButton">
         </div>
 
-        <div id="accesibilityControlsContainer">
+        <div id="collapsibleOptionsElement" class="expanded accesibilityControlsContainer">
+
           <div class="slidecontainer">
             <p>Tamaño</p>
             <input
@@ -120,6 +121,10 @@
               id="scaleSlider"
             />
           </div>
+
+          <button type="button" class="rouletteButton" id="restartGameButton">
+            <p>Reiniciar Juego</p>
+          </button>
         </div>
 
       </div>

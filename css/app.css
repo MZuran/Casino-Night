@@ -145,7 +145,7 @@ p {
   margin: 5px;
 }
 
-#rouletteButton {
+.rouletteButton {
   min-height: 2.5vw;
   background-color: rgba(0, 0, 0, 0);
   margin: 10px;
@@ -155,15 +155,22 @@ p {
   border-radius: 10px;
   transition: 0.5s;
 }
-#rouletteButton:hover {
+.rouletteButton:hover {
   background-color: #6a994e;
   transition: 0.5s;
   cursor: pointer;
 }
-#rouletteButton p {
+.rouletteButton p {
   font-family: "font-2", sans-serif;
   font-size-adjust: inherit;
   margin: 5px;
+}
+
+.selected-square {
+  background-color: #6B3FA0 !important;
+}
+.selected-square:hover {
+  background-color: rgba(167, 201, 87, 0.5) !important;
 }
 
 .red-square {
@@ -460,6 +467,7 @@ p {
   font-family: "font-1", sans-serif;
   font-size-adjust: inherit;
   color: rgb(242, 232, 207);
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
 }
 
 .notification {
@@ -500,30 +508,50 @@ p {
   height: 25px;
 }
 
-.display-none {
-  display: none;
-  transition: 0.25s ease-in-out;
+.accesibilityControlsContainer {
+  width: 80%;
+  margin: 1vw;
+  flex-direction: column !important;
+  align-items: center !important;
+  display: flex !important;
+  border-radius: 30px;
+  background-color: rgba(106, 153, 78, 0.25);
 }
 
-.visible-item {
-  opacity: 1;
-  transition: 0.25s ease-in-out;
-  display: flex;
-}
-
-.collapsing-item {
+#collapsibleOptionsElement {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
   opacity: 0;
-  height: 0;
-  transition: 0.25s ease-in-out;
-  display: flex;
-  transform: translateY(-20px);
 }
 
-#accesibilityControlsContainer {
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  display: flex;
+#collapsibleOptionsElement.expanded {
+  max-height: 1000px; /* Set a sufficiently large value to accommodate content */
+  opacity: 1;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  width: 10px;
+  background-color: rgb(56, 102, 65);
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: rgba(49, 51, 56, 0.5);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgb(106, 153, 78);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(167, 201, 87);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #62A34B;
 }
 
 .index-home {

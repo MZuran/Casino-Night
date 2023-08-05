@@ -1,53 +1,17 @@
-.optionsButton {
-  color: rgba(0, 0, 0, 0);
-  background-color: rgba(0, 0, 0, 0);
-  /* border: none; */
-  width: 2.5vw;
-  height: 2.5vw;
-  min-width: 30px;
-  min-height: 30px;
-  background-size: cover;
-  background-image: url(../media/images/options.png);
-  position: fixed;
-  bottom: 1vw;
-  left: 1vw;
-  transition: 0.5s;
-}
-.optionsButton:hover {
-  transition: 0.5s;
-  transform: rotate(90deg);
-  filter: invert(20%) sepia(6%) saturate(694%) hue-rotate(185deg) brightness(89%) contrast(93%);
-}
+/* Error: Undefined variable.
+ *    ,
+ * 46 |   background-color: rgba($color: $color-green, $alpha: 0.25);
+ *    |                                  ^^^^^^^^^^^^
+ *    '
+ *   scss\Components\accesibility-controls.scss 46:34  root stylesheet */
 
-.optionsButtonContainer {
-  width: 25px;
-  height: 25px;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined variable.\a    \2577 \a 46 \2502    background-color: rgba($color: $color-green, $alpha: 0.25);\d\a    \2502                                   ^^^^^^^^^^^^\a    \2575 \a   scss\\Components\\accesibility-controls.scss 46:34  root stylesheet";
 }
-
-.display-none {
-  display: none;
-  transition: 0.25s ease-in-out;
-}
-
-.visible-item {
-  opacity: 1;
-  transition: 0.25s ease-in-out;
-  display: flex;
-}
-
-.collapsing-item {
-  opacity: 0;
-  height: 0;
-  transition: 0.25s ease-in-out;
-  display: flex;
-  transform: translateY(-20px);
-}
-
-#accesibilityControlsContainer {
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  display: flex;
-}
-
-/*# sourceMappingURL=accesibility-controls.css.map */
