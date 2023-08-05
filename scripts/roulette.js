@@ -1,9 +1,22 @@
-//************************************************* Globally Accessible Variables *************************************************
-let playerMoney = parseInt(1000)
+//************************************************* LocalStorage *************************************************
+/* let playerMoney = parseInt(1000) */
+function playerMoney(isAdding, amount) {
+  if (isAdding) {
+    let money = parseInt(localStorage.getItem('playerMoney'))
+    money = money + amount
+    localStorage.setItem("playerMoney", money)
+  } else {
+    let money = localStorage.getItem('playerMoney')
+    if (!money && money != 0) {
+      localStorage.setItem("playerMoney", 1000)
+    } 
+    return parseInt(localStorage.getItem('playerMoney'))
+  }
+}
 
 //************************************************* Helper Universal Functions *************************************************
 function validAmount(money, usedPredefinedAmount) {
-  if ((money < 1 || money > playerMoney) && !usedPredefinedAmount) {
+  if ((money < 1 || money > playerMoney()) && !usedPredefinedAmount) {
     return false
   }
   return true
@@ -135,7 +148,7 @@ const roulette = {
         }$`,
         'winner',
       )
-      playerMoney = playerMoney + bettedAmount * rewardMultiplier
+      playerMoney(true,bettedAmount * rewardMultiplier)
     } else {
       /* alert(
         `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} perdió ${bettedAmount}$`,
@@ -180,7 +193,7 @@ const roulette = {
     if (!predefinedAmount) {
       amount = prompt(
         '¿Cuánto dinero desea apostar? Dinero Disponible: ' +
-          playerMoney +
+          playerMoney() +
           '\n\nRecuerde que una vez que apueste, se le retirará el dinero hasta saber si su apuesta ganó o perdió',
         100,
       )
@@ -191,12 +204,12 @@ const roulette = {
     if (!amount) {
       amount = 0
     }
-    if (amount > playerMoney) {
+    if (amount > (playerMoney())) {
       alert('Error in askForBettedAmount')
     }
     amount = parseInt(amount)
 
-    playerMoney = playerMoney - amount
+    playerMoney(true, -amount)
 
     return amount
   },
@@ -555,7 +568,7 @@ const roulette = {
 
     let rouletteCancelBetButton = document.getElementById('cancelBetButton')
     rouletteCancelBetButton.addEventListener('click', function () {
-      playerMoney = playerMoney + roulette.sumSecondParameters(betList)
+      playerMoney(true, roulette.sumSecondParameters(betList))
       betList = []
       updateSlider()
       /* alert("Apuestas Canceladas") */
@@ -617,7 +630,7 @@ const roulette = {
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
-          playerMoney = playerMoney + amount
+          playerMoney(true, amount)
           this.makeBet()
         }
         //********************************End of Casetype Color ********************************
@@ -635,7 +648,7 @@ const roulette = {
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
-          playerMoney = playerMoney + amount
+          playerMoney(true, amount)
           this.makeBet()
         }
         //********************************End of Casetype Half ********************************
@@ -672,7 +685,7 @@ const roulette = {
           console.log(amount)
           console.log(number)
 
-          playerMoney = playerMoney + amount
+          playerMoney(true, amount)
           updateSlider()
           this.makeBet()
         }
@@ -706,7 +719,7 @@ const roulette = {
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
-          playerMoney = playerMoney + amount
+          playerMoney(true, amount)
           this.makeBet()
         }
         //********************************End of Casetype Dozen ********************************
@@ -723,7 +736,7 @@ const roulette = {
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
-          playerMoney = playerMoney + amount
+          playerMoney(true, amount)
           this.makeBet()
         }
         //********************************End of Casetype odd ********************************
@@ -740,7 +753,7 @@ const roulette = {
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
-          playerMoney = playerMoney + amount
+          playerMoney(true, amount)
           this.makeBet()
         }
         //********************************End of Casetype odd ********************************
@@ -759,7 +772,7 @@ const roulette = {
           console.log(betList)
         } else {
           alert('¡Datos Inválidos!')
-          playerMoney = playerMoney + amount
+          playerMoney(true, amount)
           this.makeBet()
         }
         //********************************End of Casetype row ********************************
@@ -769,7 +782,7 @@ const roulette = {
       case 'cancelar':
       case null:
         alert('Apuesta cancelada')
-        playerMoney = playerMoney + amount
+        playerMoney(true, amount)
         break
 
       default:
@@ -846,7 +859,7 @@ const roulette = {
       }
     }
     /* alert(`Dinero restante: ${playerMoney}`) */
-    toastifyAlert(`Dinero restante: ${playerMoney}`, 'notification', true)
+    toastifyAlert(`Dinero restante: ${playerMoney()}`, 'notification', true)
     betList = []
     updateSlider()
   },
@@ -864,7 +877,7 @@ optionsButton.addEventListener('click', function () {
 let resetButton = document.getElementById('restartGameButton')
 resetButton.addEventListener('click', function() {
   toastifyAlert('Dinero Restante: 1000', "notification", true)
-  playerMoney = 1000
+  localStorage.setItem("playerMoney", 1000)
   updateSlider()
 })
 
@@ -894,7 +907,7 @@ let output = document.getElementById('playerMoneySliderNumberDisplay')
 let board = document.getElementById('rouletteParent')
 output.innerHTML = playerMoneySlider.value
 
-document.getElementById('playerMoneySlider').max = playerMoney
+document.getElementById('playerMoneySlider').max = playerMoney()
 
 // Update the current slider value (each time you drag the slider handle)
 playerMoneySlider.oninput = function () {
@@ -909,19 +922,20 @@ board.onclick = function () {
 }
 
 function updateSlider() {
-  playerMoneySlider.max = playerMoney
-  if (playerMoneySlider.value > playerMoney) {
-    playerMoneySlider.value = playerMoney
-    output.innerHTML = playerMoney
+  let money = playerMoney()
+  playerMoneySlider.max = money
+  if (playerMoneySlider.value > money) {
+    playerMoneySlider.value = money
+    output.innerHTML = money
   }
 
-  if (playerMoney < 100) {
+  if (money < 100) {
     output.classList = 'hilight-red'
   } else {
     output.classList = ''
   }
 
-  if (playerMoney == 0) {
+  if (money == 0) {
     playerMoneySlider.classList = 'display-none'
   } else {
     playerMoneySlider.classList = 'slider'
@@ -951,12 +965,13 @@ function toastifyAlert(text, alertType, keepApart) {
       text: text,
       className: alertType,
       position: 'left',
-      duration: 7500
+      duration: 10000
     }).showToast()
   } else {
     Toastify({
       text: text,
       className: alertType,
+      duration: 10000
     }).showToast()
   }
 }
