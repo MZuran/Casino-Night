@@ -884,6 +884,7 @@ resetButton.addEventListener('click', function() {
   localStorage.setItem("playerMoney", 1000)
   updateSlider()
   output.innerHTML = this.value
+  document.getElementById("playerMoneySliderNumberDisplay").innerText = 50
 })
 
 function isSelectedSquareClass(className, isAdding) {
