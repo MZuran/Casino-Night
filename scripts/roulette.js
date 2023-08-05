@@ -1,16 +1,20 @@
 //************************************************* LocalStorage *************************************************
 /* let playerMoney = parseInt(1000) */
 function playerMoney(isAdding, amount) {
+
   if (isAdding) {
-    let money = parseInt(localStorage.getItem('playerMoney'))
+    let money = JSON.parse(localStorage.getItem('playerMoney'))
     money = money + amount
-    localStorage.setItem("playerMoney", money)
+    localStorage.setItem("playerMoney", JSON.stringify(money))
   } else {
-    let money = localStorage.getItem('playerMoney')
+    let money = JSON.parse(localStorage.getItem('playerMoney'))
+
     if (!money && money != 0) {
-      localStorage.setItem("playerMoney", 1000)
+      let newAmount = JSON.stringify(1000)
+      localStorage.setItem("playerMoney", newAmount)
     } 
-    return parseInt(localStorage.getItem('playerMoney'))
+
+    return JSON.parse(localStorage.getItem('playerMoney'))
   }
 }
 
