@@ -879,6 +879,7 @@ resetButton.addEventListener('click', function() {
   toastifyAlert('Dinero Restante: 1000', "notification", true)
   localStorage.setItem("playerMoney", 1000)
   updateSlider()
+  output.innerHTML = this.value
 })
 
 function isSelectedSquareClass(className, isAdding) {
