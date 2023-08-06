@@ -930,6 +930,9 @@ board.onclick = function () {
 function updateSlider() {
   let money = playerMoney()
   playerMoneySlider.max = money
+  if (output.innerHTML > money) {
+    output.innerHTML = money
+  }
   if (playerMoneySlider.value > money) {
     playerMoneySlider.value = money
     output.innerHTML = money
@@ -947,7 +950,7 @@ function updateSlider() {
     playerMoneySlider.classList = 'slider'
   }
 }
-
+updateSlider()
 //||||||||||||||||||||||Scale Slider||||||||||||||||||||||
 let scaleSlider = document.getElementById('scaleSlider')
 scaleSlider.value = 30
