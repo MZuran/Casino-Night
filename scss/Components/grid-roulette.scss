@@ -43,7 +43,7 @@ $border-smoothing: 50%;
 }
 
 .selected-square {
-    background-color: $color-purple !important;
+    background-color: $color-yellow !important;
 
     &:hover {
         background-color: rgba($color-light-green, 0.5) !important;

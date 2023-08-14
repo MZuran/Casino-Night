@@ -167,7 +167,7 @@ p {
 }
 
 .selected-square {
-  background-color: #6B3FA0 !important;
+  background-color: rgb(210, 162, 71) !important;
 }
 .selected-square:hover {
   background-color: rgba(167, 201, 87, 0.5) !important;
