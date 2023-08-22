@@ -1,27 +1,34 @@
 {
-  "currentMoney": 1000,
-  "acquiredMoney": 250,
-  "lostMoney": 150,
+  "currentMoney": 609,
+  "acquiredMoney": 432,
+  "lostMoney": 823,
   "betResults": [
     {
-      "number": 1,
+      "number": 10,
       "betList": [
-        ["number", 50, 1, true],
-        ["dozen", 50, 2, false],
-        ["color", 50, "black", false],
-        ["color", 50, "red", false]
+        ["dozen", 50, 1, true],
+        ["row", 72, 2, false],
+        ["color", 113, "red", false],
+        ["odd or even", 191, "odd", false],
+        ["number", 57, 5, false],
+        ["number", 57, 11, false]
       ]
     },
     {
-      "number": 4,
+      "number": 19,
       "betList": [
-        ["number", 50, 1, false],
-        ["dozen", 50, 2, false],
-        ["color", 50, "black", true],
-        ["color", 50, "red", false]
+        ["color", 191, "red", true],
+        ["dozen", 191, 2, true]
+      ]
+    },
+    {
+      "number": 7,
+      "betList": [
+        ["row", 213, 2, false],
+        ["odd or even", 120, "even", false]
       ]
     }
   ],
-  "successfulBets": 12,
-  "failedBets": 8
+  "successfulBets": 3,
+  "failedBets": 7
 }

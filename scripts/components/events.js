@@ -18,6 +18,16 @@ resetButton.addEventListener('click', function () {
   updateSlider()
   output.innerHTML = this.value
   document.getElementById('playerMoneySliderNumberDisplay').innerText = 50
+
+  let newLogObject = emptySavedGame()
+  newLogObject.currentMoney = 1000
+  localStorage.setItem('gameLog', JSON.stringify(newLogObject))
+  loadJsonLog()
+})
+
+let exampleLogs = document.getElementById('loadExampleLogs')
+exampleLogs.addEventListener('click', function () {
+  loadJsonLog(true)
 })
 
 //************************************************* Events Helper Functions *************************************************
@@ -168,6 +178,7 @@ function prepareRouletteEvents() {
   let rouletteButton = document.getElementById('rouletteButton')
   rouletteButton.addEventListener('click', function () {
     roulette.runBet()
+    loadJsonLog()
   })
 
   let rouletteCancelBetButton = document.getElementById('cancelBetButton')

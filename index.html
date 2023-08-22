@@ -123,24 +123,11 @@
           </div>
 
           <div class="flex-dir-row">
-            <button type="button" class="rouletteButton" id="restartGameButton">
-              <p>Reiniciar Juego</p>
-            </button>
-
-            <button type="button" class="rouletteButton" id="deleteLogs">
-              <p>Borrar Registros</p>
-            </button>
+            
           </div>
         </div>
 
         <div id="collapsibleLogsElement" class="expanded collapsibleElement">
-          <p class="collapsibleElementText">
-            Registros Guardados Previamente
-            <br />
-            Puede Guardar los datos de su partida actual o ver los datos de la
-            partida anterior
-          </p>
-
           <div class="flex-dir-row">
             <div class="logsContainer" id="logsContainer">
               <p>test</p>
@@ -151,29 +138,26 @@
           </div>
 
           <div class="flex-dir-row">
-            <button type="button" class="rouletteButton" id="saveNewLogs">
-              <p>Guardar Nueva Partida</p>
+            <button type="button" class="rouletteButton" id="loadExampleLogs">
+              <p>Cargar Partida de Ejemplo</p>
             </button>
-            <button type="button" class="rouletteButton" id="pushNewLogs">
-              <p>Guardar Sobre Registro</p>
+            <button type="button" class="rouletteButton" id="restartGameButton">
+              <p>Reiniciar Juego</p>
             </button>
           </div>
         </div>
       </div>
     </main>
     <!-- Scripts -->
+    <script type="text/javascript"src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./scripts/components/toastifyAlerts.js"></script>
     <script src="./scripts/components/helperFunctions.js"></script>
     <script src="./scripts/components/localstorage.js"></script>
     <script src="scripts/roulette.js"></script>
     <script src="./scripts/components/sliders.js"></script>
     <script src="./scripts/components/events.js"></script>
-    <script src="./scripts/components/toastifyAlerts.js"></script>
     <script src="./scripts/components/collapsibles.js"></script>
     <script src="./scripts/components/saveGames.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/toastify-js"
-    ></script>
   </body>
 </html>

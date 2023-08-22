@@ -7,16 +7,21 @@ function existingSave() {
     }
   }
   
-  async function loadJsonLog(address) {
-    if (!address) {
-      address = 'savedGame.json'
-    }
+  async function loadJsonLog(isLocalGame) {
+
     let json
-  
-    await fetch(address)
+    let gameLog = JSON.parse(localStorage.getItem('gameLog'))
+
+    if (isLocalGame || !gameLog) {
+      let address = 'savedGame.json'
+
+      await fetch(address)
       .then((response) => response.json())
       .then((data) => (json = data))
       .catch((error) => console.error(error))
+    } else {
+      json = gameLog
+    }
   
     let betListContainer = document.getElementById('logsContainerBetList')
   
@@ -67,6 +72,10 @@ function existingSave() {
     parsedList = parsedList + '</p>'
   
     betListContainer.innerHTML = parsedList
+    //localStorage.setItem('playerMoney', JSON.stringify(json.currentMoney))
+    //toastifyAlert(`Dinero restante: ${playerMoney()}`, "notification", true);
+    betList = [];
+    updateSlider();
   }
   loadJsonLog()
   //json.betResults[0].betList.length

@@ -1,8 +1,8 @@
 //************************************************* Objects *************************************************
-let betList = []
+let betList = [];
 
 const roulette = {
-  validColorList: ['rojo', 'negro', 'verde', 'red', 'black', 'green'],
+  validColorList: ["rojo", "negro", "verde", "red", "black", "green"],
 
   redColorList: [
     1,
@@ -53,55 +53,55 @@ const roulette = {
   ],
 
   rouletteDomElementsClasses: [
-    'square1',
-    'square2',
-    'square3',
-    'square4',
-    'square5',
-    'square6',
-    'square7',
-    'square8',
-    'square9',
-    'square10',
-    'square11',
-    'square12',
-    'square13',
-    'square14',
-    'square15',
-    'square16',
-    'square17',
-    'square18',
-    'square19',
-    'square20',
-    'square21',
-    'square22',
-    'square23',
-    'square24',
-    'square25',
-    'square26',
-    'square27',
-    'square28',
-    'square29',
-    'square30',
-    'square31',
-    'square32',
-    'square33',
-    'square34',
-    'square35',
-    'square36',
-    'square0',
-    'firstRowSquare',
-    'secondRowSquare',
-    'thirdRowSquare',
-    'firstDozenSquare',
-    'secondDozenSquare',
-    'thirdDozenSquare',
-    'firstHalfSquare',
-    'evenSquare',
-    'redSquare',
-    'blackSquare',
-    'oddSquare',
-    'secondHalfSquare',
+    "square1",
+    "square2",
+    "square3",
+    "square4",
+    "square5",
+    "square6",
+    "square7",
+    "square8",
+    "square9",
+    "square10",
+    "square11",
+    "square12",
+    "square13",
+    "square14",
+    "square15",
+    "square16",
+    "square17",
+    "square18",
+    "square19",
+    "square20",
+    "square21",
+    "square22",
+    "square23",
+    "square24",
+    "square25",
+    "square26",
+    "square27",
+    "square28",
+    "square29",
+    "square30",
+    "square31",
+    "square32",
+    "square33",
+    "square34",
+    "square35",
+    "square36",
+    "square0",
+    "firstRowSquare",
+    "secondRowSquare",
+    "thirdRowSquare",
+    "firstDozenSquare",
+    "secondDozenSquare",
+    "thirdDozenSquare",
+    "firstHalfSquare",
+    "evenSquare",
+    "redSquare",
+    "blackSquare",
+    "oddSquare",
+    "secondHalfSquare",
   ],
 
   //||||||||||||||||||||||Helper roulette functions||||||||||||||||||||||
@@ -111,152 +111,155 @@ const roulette = {
     bettedAmount,
     bettedParameter,
     rewardMultiplier,
-    winnerBet,
+    winnerBet
   ) {
+
+    //Keyword OBJECTARRAY
+    addBetToSpunNumberLog([betType,bettedAmount,bettedParameter], winnerBet)
+
     if (winnerBet) {
-      //Keyword OBJECTARRAY
       toastifyAlert(
         `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} ganó ${
           bettedAmount * rewardMultiplier
         }$`,
-        'winner',
-      )
-      playerMoney(true, bettedAmount * rewardMultiplier)
+        "winner"
+      );
+      playerMoney(true, bettedAmount * rewardMultiplier);
     } else {
       toastifyAlert(
         `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} perdió ${bettedAmount}$`,
-        'loser',
-      )
+        "loser"
+      );
     }
-    removeAllSelectedSquareClasses()
+    removeAllSelectedSquareClasses();
   },
 
   sumSecondParameters: function (betList) {
-    let sum = 0
+    let sum = 0;
     for (const bet of betList) {
-      sum += bet[1]
+      sum += bet[1];
     }
-    return sum
+    return sum;
   },
 
   getSliderNumber: function () {
     let amount = parseInt(
-      document.getElementById('playerMoneySliderNumberDisplay').innerText,
-    )
-    return amount
+      document.getElementById("playerMoneySliderNumberDisplay").innerText
+    );
+    return amount;
   },
 
   validColor: function (color) {
     //color = prompt()
-    color = color.toLowerCase()
-    return this.validColorList.includes(color)
+    color = color.toLowerCase();
+    return this.validColorList.includes(color);
   },
 
   validNumber: function (number) {
     if (0 <= number <= 36) {
-      return true
+      return true;
     } else {
-      return false
+      return false;
     }
   },
 
   askForBettedAmount: function (predefinedAmount) {
-    let amount
+    let amount;
     if (!predefinedAmount) {
       amount = prompt(
-        '¿Cuánto dinero desea apostar? Dinero Disponible: ' +
+        "¿Cuánto dinero desea apostar? Dinero Disponible: " +
           playerMoney() +
-          '\n\nRecuerde que una vez que apueste, se le retirará el dinero hasta saber si su apuesta ganó o perdió',
-        100,
-      )
+          "\n\nRecuerde que una vez que apueste, se le retirará el dinero hasta saber si su apuesta ganó o perdió",
+        100
+      );
     } else {
-      amount = predefinedAmount
+      amount = predefinedAmount;
     }
 
     if (!amount) {
-      amount = 0
+      amount = 0;
     }
     if (amount > playerMoney()) {
-      alert('Error in askForBettedAmount')
+      alert("Error in askForBettedAmount");
     }
-    amount = parseInt(amount)
+    amount = parseInt(amount);
 
-    playerMoney(true, -amount)
+    playerMoney(true, -amount);
 
-    return amount
+    return amount;
   },
 
   spin: function () {
-    return Math.floor(Math.random() * 37)
+    return Math.floor(Math.random() * 37);
   },
 
   color: function (rouletteNumber) {
     if (rouletteNumber == 0) {
-      return 'green'
+      return "green";
     } else if (this.redColorList.includes(rouletteNumber)) {
-      return 'red'
+      return "red";
     } else if (this.blackColorList.includes(rouletteNumber)) {
-      return 'black'
+      return "black";
     }
 
-    alert('Error en roulette.color()')
-    console.log('Error en roulette.color()')
-    return 'error'
+    alert("Error en roulette.color()");
+    console.log("Error en roulette.color()");
+    return "error";
   },
 
   row: function (rouletteNumber) {
     if (rouletteNumber == 0) {
-      return 0
+      return 0;
     } else if (this.numberRows[0].includes(rouletteNumber)) {
-      return 1
+      return 1;
     } else if (this.numberRows[1].includes(rouletteNumber)) {
-      return 2
+      return 2;
     } else if (this.numberRows[2].includes(rouletteNumber)) {
-      return 3
+      return 3;
     }
 
-    alert('Error in roulette.row()')
-    console.log('Error in roulette.row()')
-    return 'error'
+    alert("Error in roulette.row()");
+    console.log("Error in roulette.row()");
+    return "error";
   },
 
   whichHalf: function (rouletteNumber) {
     if (rouletteNumber === 0) {
-      return 0
+      return 0;
     } else if (rouletteNumber >= 1 && rouletteNumber <= 18) {
-      return 1
+      return 1;
     } else if (rouletteNumber >= 19 && rouletteNumber <= 36) {
-      return 2
+      return 2;
     } else {
-      return 'error'
+      return "error";
     }
   },
 
   convertColorToEnglish: function (color) {
     switch (color) {
-      case 'rojo':
-      case 'red':
-        return 'red'
-      case 'verde':
-      case 'green':
-        return 'green'
-      case 'negro':
-      case 'black':
-        return 'black'
+      case "rojo":
+      case "red":
+        return "red";
+      case "verde":
+      case "green":
+        return "green";
+      case "negro":
+      case "black":
+        return "black";
       default:
-        alert('Error en roulette.convertColorToEnglish()')
-        console.log('Error en roulette.convertColorToEnglish()')
-        break
+        alert("Error en roulette.convertColorToEnglish()");
+        console.log("Error en roulette.convertColorToEnglish()");
+        break;
     }
   },
 
   oddEven: function (x) {
     if (x === 0) {
-      return 'zero'
+      return "zero";
     } else if (x % 2 === 0) {
-      return 'even'
+      return "even";
     } else {
-      return 'odd'
+      return "odd";
     }
   },
 
@@ -265,392 +268,393 @@ const roulette = {
     if (rouletteNumber == bettedNumber) {
       roulette.betRewards(
         rouletteNumber,
-        'number',
+        "number",
         bettedAmount,
         bettedNumber,
         35,
-        true,
-      )
+        true
+      );
     } else {
       roulette.betRewards(
         rouletteNumber,
-        'number',
+        "number",
         bettedAmount,
         bettedNumber,
         35,
-        false,
-      )
+        false
+      );
     }
   },
 
   colorBet: function (rouletteNumber, bettedAmount, bettedColor) {
-    let landedColor = this.color(rouletteNumber)
-    bettedColor = this.convertColorToEnglish(bettedColor)
+    let landedColor = this.color(rouletteNumber);
+    bettedColor = this.convertColorToEnglish(bettedColor);
 
     if (landedColor == bettedColor) {
       roulette.betRewards(
         rouletteNumber,
-        'color',
+        "color",
         bettedAmount,
         bettedColor,
         2,
-        true,
-      )
+        true
+      );
     } else {
       roulette.betRewards(
         rouletteNumber,
-        'color',
+        "color",
         bettedAmount,
         bettedColor,
         2,
-        false,
-      )
+        false
+      );
     }
   },
 
   dozenBet: function (rouletteNumber, bettedAmount, bettedDozen) {
-    let isBettedDozenCorrect = false
+    let isBettedDozenCorrect = false;
     if (bettedDozen == 1 && 1 <= rouletteNumber && rouletteNumber <= 12) {
-      isBettedDozenCorrect = true
+      isBettedDozenCorrect = true;
     } else if (
       bettedDozen == 2 &&
       13 <= rouletteNumber &&
       rouletteNumber <= 24
     ) {
-      isBettedDozenCorrect = true
+      isBettedDozenCorrect = true;
     } else if (
       bettedDozen == 3 &&
       25 <= rouletteNumber &&
       rouletteNumber <= 36
     ) {
-      isBettedDozenCorrect = true
+      isBettedDozenCorrect = true;
     }
 
     if (isBettedDozenCorrect) {
       roulette.betRewards(
         rouletteNumber,
-        'dozen',
+        "dozen",
         bettedAmount,
         bettedDozen,
         2,
-        true,
-      )
+        true
+      );
     } else {
       roulette.betRewards(
         rouletteNumber,
-        'dozen',
+        "dozen",
         bettedAmount,
         bettedDozen,
         2,
-        false,
-      )
+        false
+      );
     }
   },
 
   oddEvenBet: function (rouletteNumber, bettedAmount, bettedOddEven) {
-    let result = roulette.oddEven(rouletteNumber)
+    let result = roulette.oddEven(rouletteNumber);
     if (result == bettedOddEven) {
       roulette.betRewards(
         rouletteNumber,
-        'odd or even',
+        "odd or even",
         bettedAmount,
         bettedOddEven,
         2,
-        true,
-      )
+        true
+      );
     } else {
       roulette.betRewards(
         rouletteNumber,
-        'odd or even',
+        "odd or even",
         bettedAmount,
         bettedOddEven,
         2,
-        false,
-      )
+        false
+      );
     }
   },
 
   rowBet: function (rouletteNumber, bettedAmount, bettedRow) {
-    let resultRow = roulette.row(rouletteNumber)
+    let resultRow = roulette.row(rouletteNumber);
     if (bettedRow == resultRow) {
       roulette.betRewards(
         rouletteNumber,
-        'row',
+        "row",
         bettedAmount,
         bettedRow,
         2,
-        true,
-      )
+        true
+      );
     } else {
       roulette.betRewards(
         rouletteNumber,
-        'row',
+        "row",
         bettedAmount,
         bettedRow,
         2,
-        false,
-      )
+        false
+      );
     }
   },
 
   halvesBet: function (rouletteNumber, bettedAmount, bettedHalf) {
-    let resultHalf = this.whichHalf(rouletteNumber)
+    let resultHalf = this.whichHalf(rouletteNumber);
     if (resultHalf == bettedHalf) {
       roulette.betRewards(
         rouletteNumber,
-        'half',
+        "half",
         bettedAmount,
         bettedHalf,
         2,
-        true,
-      )
+        true
+      );
     } else {
       roulette.betRewards(
         rouletteNumber,
-        'half',
+        "half",
         bettedAmount,
         bettedHalf,
         2,
-        false,
-      )
+        false
+      );
     }
   },
 
   //||||||||||||||||||||||Making the bets, storing them on an array and running them||||||||||||||||||||||
   makeBet: function (predefinedBetType, predefinedAmount, predefinedParameter) {
-    let betType
-    let amount
+    let betType;
+    let amount;
 
     if (!predefinedBetType) {
       betType = prompt(
-        '¿Qué tipo de apuesta desea hacer?\n\nTambién puede cancelar la apuesta',
-        'color',
-      )
+        "¿Qué tipo de apuesta desea hacer?\n\nTambién puede cancelar la apuesta",
+        "color"
+      );
     } else {
-      betType = predefinedBetType
+      betType = predefinedBetType;
     }
 
     if (predefinedAmount === 0) {
-      toastifyAlert('¡Apuesta Rechazada!', 'loser')
-      return 'Player Selected 0 dollars'
+      toastifyAlert("¡Apuesta Rechazada!", "loser");
+      return "Player Selected 0 dollars";
     }
-    amount = this.askForBettedAmount(predefinedAmount)
+    amount = this.askForBettedAmount(predefinedAmount);
 
-    let usedPredefinedAmount = false
+    let usedPredefinedAmount = false;
     if (predefinedAmount) {
-      usedPredefinedAmount = true
+      usedPredefinedAmount = true;
     }
 
     switch (betType) {
-      case 'color':
+      case "color":
         //********************************Start of Casetype Color ********************************
-        let color
+        let color;
 
         if (!predefinedParameter) {
           color = prompt(
-            '¿Desea apostar al rojo, al negro o al verde? (Default: Rojo)',
-            'rojo',
-          )
+            "¿Desea apostar al rojo, al negro o al verde? (Default: Rojo)",
+            "rojo"
+          );
         } else {
-          color = predefinedParameter
+          color = predefinedParameter;
         }
 
         if (color === null) {
-          color = 'red'
+          color = "red";
         }
 
         if (
           validAmount(amount, usedPredefinedAmount) &&
           this.validColor(color)
         ) {
-          betList.push([betType, amount, color])
+          betList.push([betType, amount, color]);
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert('¡Apuesta Aceptada!', 'notification')
-          console.log(betList)
+          toastifyAlert("¡Apuesta Aceptada!", "notification");
+          console.log(betList);
         } else {
-          alert('¡Datos Inválidos!')
-          playerMoney(true, amount)
-          this.makeBet()
+          alert("¡Datos Inválidos!");
+          playerMoney(true, amount);
+          this.makeBet();
         }
         //********************************End of Casetype Color ********************************
-        break
+        break;
 
-      case 'half':
-      case 'halves':
-      case 'mitad':
+      case "half":
+      case "halves":
+      case "mitad":
         //********************************Start of Casetype Half ********************************
         if (validAmount(amount, usedPredefinedAmount)) {
           //halvesBet: function (rouletteNumber, bettedAmount, bettedHalf)
-          betList.push([betType, amount, predefinedParameter])
+          betList.push([betType, amount, predefinedParameter]);
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert('¡Apuesta Aceptada!', 'notification')
-          console.log(betList)
+          toastifyAlert("¡Apuesta Aceptada!", "notification");
+          console.log(betList);
         } else {
-          alert('¡Datos Inválidos!')
-          playerMoney(true, amount)
-          this.makeBet()
+          alert("¡Datos Inválidos!");
+          playerMoney(true, amount);
+          this.makeBet();
         }
         //********************************End of Casetype Half ********************************
-        break
+        break;
 
-      case 'number':
-      case 'numero':
-      case 'número':
+      case "number":
+      case "numero":
+      case "número":
         //********************************Start of Casetype Number ********************************
-        let number
+        let number;
 
         if (!predefinedParameter && predefinedParameter != 0) {
-          number = prompt('¿A qué número desea apostar? Default: 0', 0)
+          number = prompt("¿A qué número desea apostar? Default: 0", 0);
           if (!number) {
-            number = 0
+            number = 0;
           }
-          number = parseInt(number)
+          number = parseInt(number);
         } else {
-          number = predefinedParameter
+          number = predefinedParameter;
         }
 
         if (
           validAmount(amount, usedPredefinedAmount) &&
           this.validNumber(number)
         ) {
-          betList.push([betType, amount, number])
+          betList.push([betType, amount, number]);
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert('¡Apuesta Aceptada!', 'notification')
-          console.log(betList)
-          updateSlider()
+          toastifyAlert("¡Apuesta Aceptada!", "notification");
+          console.log(betList);
+          updateSlider();
         } else {
-          alert('¡Datos Inválidos!')
+          alert("¡Datos Inválidos!");
 
-          console.log(amount)
-          console.log(number)
+          console.log(amount);
+          console.log(number);
 
-          playerMoney(true, amount)
-          updateSlider()
-          this.makeBet()
+          playerMoney(true, amount);
+          updateSlider();
+          this.makeBet();
         }
 
         //********************************Start of Casetype Number ********************************
-        break
+        break;
 
-      case 'dozen':
-      case 'dozens':
-      case 'docena':
-      case 'docenas':
+      case "dozen":
+      case "dozens":
+      case "docena":
+      case "docenas":
         //********************************Start of Casetype Dozen ********************************
-        let dozen
+        let dozen;
         if (!predefinedParameter) {
           dozen = prompt(
-            '¿A cuál docena desea apostar?\n\n1: Primera docena\n2: Segunda docena\n3: Tercer docena',
-            1,
-          )
-          dozen = parseInt(dozen)
+            "¿A cuál docena desea apostar?\n\n1: Primera docena\n2: Segunda docena\n3: Tercer docena",
+            1
+          );
+          dozen = parseInt(dozen);
         } else {
-          dozen = predefinedParameter
+          dozen = predefinedParameter;
         }
         if (
           (dozen == 1 || dozen == 2 || dozen == 3) &&
           validAmount(amount, usedPredefinedAmount)
         ) {
           //dozenBet: function(rouletteNumber, bettedAmount, bettedDozen)
-          betList.push([betType, amount, dozen])
+          betList.push([betType, amount, dozen]);
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert('¡Apuesta Aceptada!', 'notification')
-          console.log(betList)
+          toastifyAlert("¡Apuesta Aceptada!", "notification");
+          console.log(betList);
         } else {
-          alert('¡Datos Inválidos!')
-          playerMoney(true, amount)
-          this.makeBet()
+          alert("¡Datos Inválidos!");
+          playerMoney(true, amount);
+          this.makeBet();
         }
         //********************************End of Casetype Dozen ********************************
-        break
+        break;
 
-      case 'odd':
-      case 'impar':
+      case "odd":
+      case "impar":
         //********************************Start of Casetype odd ********************************
         if (validAmount(amount, usedPredefinedAmount)) {
           //evenOddBet: function(rouletteNumber, bettedAmount, bettedEvenOdd)
-          betList.push([betType, amount, 'odd'])
+          betList.push([betType, amount, "odd"]);
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert('¡Apuesta Aceptada!', 'notification')
-          console.log(betList)
+          toastifyAlert("¡Apuesta Aceptada!", "notification");
+          console.log(betList);
         } else {
-          alert('¡Datos Inválidos!')
-          playerMoney(true, amount)
-          this.makeBet()
+          alert("¡Datos Inválidos!");
+          playerMoney(true, amount);
+          this.makeBet();
         }
         //********************************End of Casetype odd ********************************
-        break
+        break;
 
-      case 'even':
-      case 'par':
+      case "even":
+      case "par":
         //********************************Start of Casetype odd ********************************
         if (validAmount(amount, usedPredefinedAmount)) {
           //evenOddBet: function(rouletteNumber, bettedAmount, bettedEvenOdd)
-          betList.push([betType, amount, 'even'])
+          betList.push([betType, amount, "even"]);
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert('¡Apuesta Aceptada!', 'notification')
-          console.log(betList)
+          toastifyAlert("¡Apuesta Aceptada!", "notification");
+          console.log(betList);
         } else {
-          alert('¡Datos Inválidos!')
-          playerMoney(true, amount)
-          this.makeBet()
+          alert("¡Datos Inválidos!");
+          playerMoney(true, amount);
+          this.makeBet();
         }
         //********************************End of Casetype odd ********************************
-        break
+        break;
 
-      case 'row':
-      case 'fila':
-      case 'filas':
-      case 'rows':
+      case "row":
+      case "fila":
+      case "filas":
+      case "rows":
         //********************************Start of Casetype row ********************************
         if (validAmount(amount, usedPredefinedAmount)) {
           //rowBet: function (rouletteNumber, bettedAmount, bettedRow)
-          betList.push([betType, amount, predefinedParameter])
+          betList.push([betType, amount, predefinedParameter]);
           /* alert('¡Apuesta aceptada!') */
-          toastifyAlert('¡Apuesta Aceptada!', 'notification')
-          console.log(betList)
+          toastifyAlert("¡Apuesta Aceptada!", "notification");
+          console.log(betList);
         } else {
-          alert('¡Datos Inválidos!')
-          playerMoney(true, amount)
-          this.makeBet()
+          alert("¡Datos Inválidos!");
+          playerMoney(true, amount);
+          this.makeBet();
         }
         //********************************End of Casetype row ********************************
-        break
+        break;
 
-      case 'cancel':
-      case 'cancelar':
+      case "cancel":
+      case "cancelar":
       case null:
-        alert('Apuesta cancelada')
-        playerMoney(true, amount)
-        break
+        alert("Apuesta cancelada");
+        playerMoney(true, amount);
+        break;
 
       default:
         alert(
-          '¡' +
+          "¡" +
             betType +
-            ' no es un tipo de apuesta aceptada!. Asegúrese de escribir bien.',
-        )
-        this.makeBet()
-        break
+            " no es un tipo de apuesta aceptada!. Asegúrese de escribir bien."
+        );
+        this.makeBet();
+        break;
     }
   },
 
   runBet: function () {
-    let rouletteNumberResult = this.spin()
+    let rouletteNumberResult = this.spin();
     toastifyAlert(
       `¡La bola cayó en ${rouletteNumberResult}!`,
-      'notification',
-      true,
-    )
+      "notification",
+      true
+    );
 
     //Here I'll need to generate a new object in the array of objects with a new number result
     //Keyword OBJECTARRAY
+    addSpunNumberLog(rouletteNumberResult);
 
-    let localSavedGame = localStorage.getItem('savedGame')
+    let localSavedGame = localStorage.getItem("savedGame");
     if (localSavedGame) {
     } else {
       //Creating new empty save game if there isn't any inside localstorage
-      localSavedGame = emptySavedGame()
+      localSavedGame = emptySavedGame();
     }
 
     //betList formatting:
@@ -658,56 +662,56 @@ const roulette = {
 
     for (let i = 0; i < betList.length; i++) {
       switch (betList[i][0]) {
-        case 'color':
+        case "color":
           //colorBet: function(rouletteNumber, bettedAmount, bettedColor)
-          this.colorBet(rouletteNumberResult, betList[i][1], betList[i][2])
-          break
+          this.colorBet(rouletteNumberResult, betList[i][1], betList[i][2]);
+          break;
 
-        case 'half':
-        case 'halves':
-        case 'mitad':
+        case "half":
+        case "halves":
+        case "mitad":
           //halvesBet: function (rouletteNumber, bettedAmount, bettedHalf)
-          this.halvesBet(rouletteNumberResult, betList[i][1], betList[i][2])
-          break
+          this.halvesBet(rouletteNumberResult, betList[i][1], betList[i][2]);
+          break;
 
-        case 'number':
-        case 'numero':
-        case 'número':
+        case "number":
+        case "numero":
+        case "número":
           //singleNumberBet: function (rouletteNumber, bettedAmount, bettedNumber)
           this.singleNumberBet(
             rouletteNumberResult,
             betList[i][1],
-            betList[i][2],
-          )
-          break
+            betList[i][2]
+          );
+          break;
 
-        case 'par':
-        case 'even':
-        case 'odd':
-        case 'impar':
+        case "par":
+        case "even":
+        case "odd":
+        case "impar":
           //oddEvenBet: function (rouletteNumber, bettedAmount, bettedOddEven)
-          this.oddEvenBet(rouletteNumberResult, betList[i][1], betList[i][2])
-          break
+          this.oddEvenBet(rouletteNumberResult, betList[i][1], betList[i][2]);
+          break;
 
-        case 'row':
-        case 'fila':
-        case 'filas':
-        case 'rows':
+        case "row":
+        case "fila":
+        case "filas":
+        case "rows":
           //rowBet: function (rouletteNumber, bettedAmount, bettedRow)
-          this.rowBet(rouletteNumberResult, betList[i][1], betList[i][2])
-          break
+          this.rowBet(rouletteNumberResult, betList[i][1], betList[i][2]);
+          break;
 
-        case 'dozen':
-        case 'dozens':
-        case 'docena':
-        case 'docenas':
+        case "dozen":
+        case "dozens":
+        case "docena":
+        case "docenas":
           //dozenBet: function (rouletteNumber, bettedAmount, bettedDozen)
-          this.dozenBet(rouletteNumberResult, betList[i][1], betList[i][2])
-          break
+          this.dozenBet(rouletteNumberResult, betList[i][1], betList[i][2]);
+          break;
       }
     }
-    toastifyAlert(`Dinero restante: ${playerMoney()}`, 'notification', true)
-    betList = []
-    updateSlider()
+    toastifyAlert(`Dinero restante: ${playerMoney()}`, "notification", true);
+    betList = [];
+    updateSlider();
   },
-}
+};

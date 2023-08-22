@@ -56,6 +56,15 @@ function playerMoney(isAdding, amount) {
 
     gameLog.betResults[spunGameNumber].betList.push(bet)
 
+    if(isWinner) {
+      gameLog.acquiredMoney += bet[1]
+      gameLog.successfulBets += 1
+    } else {
+      gameLog.lostMoney += bet[1]
+      gameLog.failedBets += 1
+    }
+
+    gameLog.currentMoney = playerMoney()
+
     localStorage.setItem('gameLog', JSON.stringify(gameLog))
   }
-  
