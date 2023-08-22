@@ -1,30 +1,3 @@
-//************************************************* LocalStorage *************************************************
-/* let playerMoney = parseInt(1000) */
-function playerMoney(isAdding, amount) {
-
-  if (isAdding) {
-    let money = JSON.parse(localStorage.getItem('playerMoney'))
-    money = money + amount
-    localStorage.setItem("playerMoney", JSON.stringify(money))
-  } else {
-    let money = JSON.parse(localStorage.getItem('playerMoney'))
-
-    if (!money && money != 0) {
-      let newAmount = JSON.stringify(1000)
-      localStorage.setItem("playerMoney", newAmount)
-    } 
-
-    return JSON.parse(localStorage.getItem('playerMoney'))
-  }
-}
-
-//************************************************* Helper Universal Functions *************************************************
-function validAmount(money, usedPredefinedAmount) {
-  if ((money < 1 || money > playerMoney()) && !usedPredefinedAmount) {
-    return false
-  }
-  return true
-}
 //************************************************* Objects *************************************************
 let betList = []
 
@@ -141,22 +114,15 @@ const roulette = {
     winnerBet,
   ) {
     if (winnerBet) {
-      /* alert(
-        `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} ganó ${
-          bettedAmount * rewardMultiplier
-        }$`,
-      ) */
+      //Keyword OBJECTARRAY
       toastifyAlert(
         `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} ganó ${
           bettedAmount * rewardMultiplier
         }$`,
         'winner',
       )
-      playerMoney(true,bettedAmount * rewardMultiplier)
+      playerMoney(true, bettedAmount * rewardMultiplier)
     } else {
-      /* alert(
-        `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} perdió ${bettedAmount}$`,
-      ) */
       toastifyAlert(
         `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} perdió ${bettedAmount}$`,
         'loser',
@@ -174,7 +140,9 @@ const roulette = {
   },
 
   getSliderNumber: function () {
-    let amount = parseInt(document.getElementById('playerMoneySliderNumberDisplay').innerText)
+    let amount = parseInt(
+      document.getElementById('playerMoneySliderNumberDisplay').innerText,
+    )
     return amount
   },
 
@@ -208,7 +176,7 @@ const roulette = {
     if (!amount) {
       amount = 0
     }
-    if (amount > (playerMoney())) {
+    if (amount > playerMoney()) {
       alert('Error in askForBettedAmount')
     }
     amount = parseInt(amount)
@@ -802,12 +770,21 @@ const roulette = {
 
   runBet: function () {
     let rouletteNumberResult = this.spin()
-    /* alert(`¡La bola cayó en ${rouletteNumberResult}!`) */
     toastifyAlert(
       `¡La bola cayó en ${rouletteNumberResult}!`,
       'notification',
       true,
     )
+
+    //Here I'll need to generate a new object in the array of objects with a new number result
+    //Keyword OBJECTARRAY
+
+    let localSavedGame = localStorage.getItem('savedGame')
+    if (localSavedGame) {
+    } else {
+      //Creating new empty save game if there isn't any inside localstorage
+      localSavedGame = emptySavedGame()
+    }
 
     //betList formatting:
     //betList[Bet Index][The Type of Bet, Betted Amount, Parameter Of Bet]
@@ -862,57 +839,12 @@ const roulette = {
           break
       }
     }
-    /* alert(`Dinero restante: ${playerMoney}`) */
     toastifyAlert(`Dinero restante: ${playerMoney()}`, 'notification', true)
     betList = []
     updateSlider()
   },
 }
 
-//************************************************* Events *************************************************
-roulette.prepareEvents()
-
-let seeOptions = false;
-let optionsButton = document.getElementById('optionsButton')
-optionsButton.addEventListener('click', function () {
-  toggleOptionsCollapse()
-})
-
-
-let seeLogs = false;
-let logsButton = document.getElementById('logsButton')
-logsButton.addEventListener('click', function () {
-  toggleLogsCollapse()
-})
-
-let resetButton = document.getElementById('restartGameButton')
-resetButton.addEventListener('click', function() {
-  toastifyAlert('Dinero Restante: 1000', "notification", true)
-  localStorage.setItem("playerMoney", 1000)
-  updateSlider()
-  output.innerHTML = this.value
-  document.getElementById("playerMoneySliderNumberDisplay").innerText = 50
-})
-
-function isSelectedSquareClass(className, isAdding) {
-  let element = document.getElementsByClassName(className);
-
-  if (element && !element[0].classList.contains("selected-square") && isAdding) {
-    element[0].classList.add("selected-square");
-  }
-
-  if (element && element[0].classList.contains("selected-square") && !isAdding) {
-    element[0].classList.remove("selected-square");
-  }
-
-}
-
-function removeAllSelectedSquareClasses() {
-  const elements = document.querySelectorAll(".selected-square");
-  elements.forEach((element) => {
-    element.classList.remove("selected-square");
-  });
-}
 //************************************************* Sliders *************************************************
 //||||||||||||||||||||||Player Money Slider||||||||||||||||||||||
 let playerMoneySlider = document.getElementById('playerMoneySlider')
@@ -965,10 +897,10 @@ scaleSlider.value = 30
 function updateScaleSlider() {
   let scaleValue = scaleSlider.value
   //577.5 / 172
-  let parent = document.getElementById('rouletteParent');
+  let parent = document.getElementById('rouletteParent')
 
-  parent.style.width = `${scaleValue * 1.5}vw`;
-  parent.style.height = `${scaleValue}vh`;
+  parent.style.width = `${scaleValue * 1.5}vw`
+  parent.style.height = `${scaleValue}vh`
 }
 updateScaleSlider()
 scaleSlider.onclick = function () {
@@ -981,38 +913,40 @@ function toastifyAlert(text, alertType, keepApart) {
       text: text,
       className: alertType,
       position: 'left',
-      duration: 10000
+      duration: 10000,
     }).showToast()
   } else {
     Toastify({
       text: text,
       className: alertType,
-      duration: 10000
+      duration: 10000,
     }).showToast()
   }
 }
 
 //************************************************* Collapsibles *************************************************
 function toggleOptionsCollapse() {
-  const collapsibleElement = document.getElementById("collapsibleOptionsElement");
-  collapsibleElement.classList.toggle("expanded");
+  const collapsibleElement = document.getElementById(
+    'collapsibleOptionsElement',
+  )
+  collapsibleElement.classList.toggle('expanded')
 
-  if (collapsibleElement.classList.contains("expanded")) {
-    collapsibleElement.style.display = "flex";
+  if (collapsibleElement.classList.contains('expanded')) {
+    collapsibleElement.style.display = 'flex'
   } else {
-    setTimeout(() => (collapsibleElement.style.display = "none"), 300);
+    setTimeout(() => (collapsibleElement.style.display = 'none'), 300)
   }
 }
 toggleOptionsCollapse()
 
 function toggleLogsCollapse() {
-  const collapsibleElement = document.getElementById("collapsibleLogsElement");
-  collapsibleElement.classList.toggle("expanded");
+  const collapsibleElement = document.getElementById('collapsibleLogsElement')
+  collapsibleElement.classList.toggle('expanded')
 
-  if (collapsibleElement.classList.contains("expanded")) {
-    collapsibleElement.style.display = "flex";
+  if (collapsibleElement.classList.contains('expanded')) {
+    collapsibleElement.style.display = 'flex'
   } else {
-    setTimeout(() => (collapsibleElement.style.display = "none"), 300);
+    setTimeout(() => (collapsibleElement.style.display = 'none'), 300)
   }
 }
 toggleLogsCollapse()
@@ -1027,57 +961,63 @@ function existingSave() {
 }
 
 async function loadJsonLog(address) {
-  if (!address) {address = "savedGame.json"}
+  if (!address) {
+    address = 'savedGame.json'
+  }
   let json
 
   await fetch(address)
-  .then(response => response.json())
-  .then(data => json = data)
-  .catch(error => console.error(error))
+    .then((response) => response.json())
+    .then((data) => (json = data))
+    .catch((error) => console.error(error))
 
-  let betListContainer = document.getElementById("logsContainerBetList")
+  let betListContainer = document.getElementById('logsContainerBetList')
 
-  let container = document.getElementById("logsContainer")
+  let container = document.getElementById('logsContainer')
 
   //console.log(json)
   let message = "<p class='logsText'>"
   message = message + `Dinero Restante: ${json.currentMoney}$<br>`
-  message = message + "<br>"
+  message = message + '<br>'
   message = message + `Cantidad de Apuestas Ganadas: <span class="hilight-green">${json.successfulBets}</span><br>`
   message = message + `Dinero Ganado: <span class="hilight-green">${json.acquiredMoney}$</span><br>`
-  message = message + "<br>"
+  message = message + '<br>'
   message = message + `Cantidad de Apuestas Perdidas: <span class="hilight-red">${json.failedBets}</span><br>`
   message = message + `Dinero Perdido: <span class="hilight-red">${json.lostMoney}$</span><br>`
-  message = message + "<br>"
+  message = message + '<br>'
   message = message + `Cantidad de Apuestas Totales: ${json.failedBets + json.successfulBets}<br>`
   message = message + `Desempeño: ${100 * (json.successfulBets / (json.failedBets + json.successfulBets))}%<br>`
-  message = message + "</p>"
+  message = message + '</p>'
 
-  container.innerHTML = message;
+  container.innerHTML = message
 
   let parsedList = "<p class='logsText'>"
   //For Each time the wheel spun
   for (let i = 0; i < json.betResults.length; i = i + 1) {
-
-    if (i > 0) {parsedList = parsedList + "<br>"}
-    parsedList = parsedList + `Número Resultado: ${json.betResults[i].number}<br>`
+    if (i > 0) {
+      parsedList = parsedList + '<br>'
+    }
+    parsedList =
+      parsedList + `Número Resultado: ${json.betResults[i].number}<br>`
 
     //For each bet made on this particular spin of the wheel
     for (let b = 0; b < json.betResults[i].betList.length; b = b + 1) {
       let color
       //Set result color
       if (json.betResults[i].betList[b][3]) {
-        color = "green"
+        color = 'green'
       } else {
-        color = "red"
+        color = 'red'
       }
 
-      parsedList = parsedList + `<span class="hilight-${color}">
+      parsedList =
+        parsedList +
+        `<span class="hilight-${color}">
       ${json.betResults[i].betList[b][1]}$ al ${json.betResults[i].betList[b][0]} tipo ${json.betResults[i].betList[b][2]}
       </span><br>`
     }
   }
-  parsedList = parsedList + "</p>"
+  parsedList = parsedList + '</p>'
 
   betListContainer.innerHTML = parsedList
 }
