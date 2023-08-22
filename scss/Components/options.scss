@@ -11,9 +11,11 @@
   overflow: hidden;
   transition: max-height 0.3s ease, opacity 0.3s ease;
   opacity: 0;
+  margin: 0;
 }
 
 #collapsibleOptionsElement.expanded {
   max-height: 1000px; /* Set a sufficiently large value to accommodate content */
   opacity: 1;
+  margin: 1vh;
 }
