@@ -1,6 +1,27 @@
 {
-    "currentMoney": 1000,
-    "acquiredMoney": 250,
-    "lostMoney": 150,
-    "totalBetList": []
-  }  
+  "currentMoney": 1000,
+  "acquiredMoney": 250,
+  "lostMoney": 150,
+  "betResults": [
+    {
+      "number": 1,
+      "betList": [
+        ["number", 50, 1, true],
+        ["dozen", 50, 2, false],
+        ["color", 50, "black", false],
+        ["color", 50, "red", false]
+      ]
+    },
+    {
+      "number": 4,
+      "betList": [
+        ["number", 50, 1, false],
+        ["dozen", 50, 2, false],
+        ["color", 50, "black", true],
+        ["color", 50, "red", false]
+      ]
+    }
+  ],
+  "successfulBets": 12,
+  "failedBets": 8
+}

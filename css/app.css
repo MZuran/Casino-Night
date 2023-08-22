@@ -131,6 +131,11 @@ p {
   background-color: rgba(49, 51, 56, 0.5);
   padding: 1vw;
   border-radius: 1vw;
+  min-width: 14vw;
+  max-width: 100%;
+  margin: 1vw;
+  overflow-y: auto;
+  max-height: 20vw;
 }
 
 .logsText {

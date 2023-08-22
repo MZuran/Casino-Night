@@ -15,7 +15,6 @@
   <body>
     <main class="index-home flex-dir-column absolute-center">
       <div id="tableParent">
-
         <!-- Player Money Slider -->
         <div class="slidecontainer">
           <p>
@@ -123,17 +122,42 @@
             />
           </div>
 
-          <button type="button" class="rouletteButton" id="restartGameButton">
-            <p>Reiniciar Juego</p>
-          </button>
+          <div class="flex-dir-row">
+            <button type="button" class="rouletteButton" id="restartGameButton">
+              <p>Reiniciar Juego</p>
+            </button>
+
+            <button type="button" class="rouletteButton" id="deleteLogs">
+              <p>Borrar Registros</p>
+            </button>
+          </div>
         </div>
 
         <div id="collapsibleLogsElement" class="expanded collapsibleElement">
-          <div class="logsContainer" id="logsContainer">
-            <p>test</p>
-          </div><button type="button" class="rouletteButton" id="loadLogsButton">
-            <p>Cargar Registros</p>
-          </button>
+          <p class="collapsibleElementText">
+            Registros Guardados Previamente
+            <br />
+            Puede Guardar los datos de su partida actual o ver los datos de la
+            partida anterior
+          </p>
+
+          <div class="flex-dir-row">
+            <div class="logsContainer" id="logsContainer">
+              <p>test</p>
+            </div>
+            <div class="logsContainer" id="logsContainerBetList">
+              <p>test</p>
+            </div>
+          </div>
+
+          <div class="flex-dir-row">
+            <button type="button" class="rouletteButton" id="saveNewLogs">
+              <p>Guardar Nueva Partida</p>
+            </button>
+            <button type="button" class="rouletteButton" id="pushNewLogs">
+              <p>Guardar Sobre Registro</p>
+            </button>
+          </div>
         </div>
       </div>
     </main>
