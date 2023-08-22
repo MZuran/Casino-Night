@@ -26,6 +26,13 @@ function existingSave() {
     let betListContainer = document.getElementById('logsContainerBetList')
   
     let container = document.getElementById('logsContainer')
+
+    let balanceColor
+    if (json.acquiredMoney - json.lostMoney < 0) {
+      balanceColor = "red"
+    } else {
+      balanceColor = "green"
+    }
   
     //console.log(json)
     let message = "<p class='logsText'>"
@@ -38,7 +45,7 @@ function existingSave() {
     message = message + `Dinero Perdido: <span class="hilight-red">${json.lostMoney}$</span><br>`
     message = message + '<br>'
     message = message + `Cantidad de Apuestas Totales: ${json.failedBets + json.successfulBets}<br>`
-    message = message + `Desempeño: ${100 * (json.successfulBets / (json.failedBets + json.successfulBets))}%<br>`
+    message = message + `Balance neto: <span class="hilight-${balanceColor}">${json.acquiredMoney - json.lostMoney}$</span><br>`
     message = message + '</p>'
   
     container.innerHTML = message
