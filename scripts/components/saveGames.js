@@ -12,15 +12,24 @@ function existingSave() {
     let json
     let gameLog = JSON.parse(localStorage.getItem('gameLog'))
 
-    if (isLocalGame || !gameLog) {
+    if (isLocalGame) {
       let address = 'savedGame.json'
 
       await fetch(address)
       .then((response) => response.json())
       .then((data) => (json = data))
       .catch((error) => console.error(error))
+
+      
+      localStorage.setItem('playerMoney', JSON.stringify(json.currentMoney))
     } else {
       json = gameLog
+    }
+
+    if (!gameLog) {
+      json = emptySavedGame()
+      json.currentMoney = 1000
+      localStorage.setItem('playerMoney', JSON.stringify(1000))
     }
   
     let betListContainer = document.getElementById('logsContainerBetList')
