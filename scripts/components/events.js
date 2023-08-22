@@ -12,7 +12,8 @@ infoButton.addEventListener('click', function () {
 
   let content = "<h3>¡Bienvenido a la mesa de ruleta!</h3><br>" +
   "Todas las partidas se empiezan con 1000$. Para apostar, usá el <b>slider</b> de arriba de el tablero para seleccionar una cantidad y luego, ¡hacé click en el <b>tablero</b>!<br><br>" +
-  "¡Recordá mirar la <b>configuración ⚙️</b> y el <b>historial de apuestas 📋</b> para divertirte más!"
+  "¡Recordá mirar la <b>configuración ⚙️</b> y el <b>historial de apuestas 📋</b> para divertirte más!" +
+  "<br><br>Creado por Matías Zuran. <br> matias.zuran@gmail.com"
   alertify.alert(content).set('basic', true); 
 })
 
