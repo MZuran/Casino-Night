@@ -27,3 +27,35 @@ function playerMoney(isAdding, amount) {
       failedBets: 0,
     }
   }
+
+  function addSpunNumberLog(number) {
+    let gameLog = JSON.parse(localStorage.getItem('gameLog'))
+    if (!gameLog) {
+        gameLog = emptySavedGame()
+    }
+
+    gameLog.betResults.push({
+        "number": number,
+        "betList": []
+    })
+
+    localStorage.setItem('gameLog', JSON.stringify(gameLog))
+  }
+
+  function addBetToSpunNumberLog(bet, isWinner) {
+    let gameLog = JSON.parse(localStorage.getItem('gameLog'))
+
+    spunGameNumber = gameLog.betResults.length - 1
+
+    if (!gameLog || spunGameNumber < 0) {
+        console.log("Invalid gamelog error!")
+        return 1
+    }
+
+    bet.push(isWinner)
+
+    gameLog.betResults[spunGameNumber].betList.push(bet)
+
+    localStorage.setItem('gameLog', JSON.stringify(gameLog))
+  }
+  

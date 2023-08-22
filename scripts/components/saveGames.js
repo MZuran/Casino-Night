@@ -70,4 +70,4 @@ function existingSave() {
   }
   loadJsonLog()
   //json.betResults[0].betList.length
-  
+
