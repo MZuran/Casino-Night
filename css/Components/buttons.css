@@ -1,0 +1,25 @@
+.button-container {
+  position: fixed;
+  bottom: 1vw;
+  left: 1vw;
+  display: flex;
+  flex-direction: row;
+}
+.button-container div {
+  margin-right: 1vw;
+  transition: 0.5s;
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  /* border: none; */
+  width: 2.5vw;
+  height: 2.5vw;
+  min-width: 30px;
+  min-height: 30px;
+  background-size: cover;
+}
+.button-container div:hover {
+  transition: 0.5s;
+  filter: invert(20%) sepia(6%) saturate(694%) hue-rotate(185deg) brightness(89%) contrast(93%);
+}
+
+/*# sourceMappingURL=buttons.css.map */

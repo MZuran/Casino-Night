@@ -1,0 +1,14 @@
+.collapsibleElement {
+    width: 80%;
+    
+    margin: 1vw;
+    padding: 1vw;
+  
+    flex-direction: column !important;
+    align-items: center !important;
+  
+    display: flex !important;
+    border-radius: 30px;
+  
+    background-color: rgba($color: $color-green, $alpha: 0.25);
+  }

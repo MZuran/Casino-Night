@@ -878,6 +878,13 @@ optionsButton.addEventListener('click', function () {
   toggleOptionsCollapse()
 })
 
+
+let seeLogs = false;
+let logsButton = document.getElementById('logsButton')
+logsButton.addEventListener('click', function () {
+  toggleLogsCollapse()
+})
+
 let resetButton = document.getElementById('restartGameButton')
 resetButton.addEventListener('click', function() {
   toastifyAlert('Dinero Restante: 1000', "notification", true)
@@ -985,7 +992,7 @@ function toastifyAlert(text, alertType, keepApart) {
   }
 }
 
-//************************************************* Options *************************************************
+//************************************************* Collapsibles *************************************************
 function toggleOptionsCollapse() {
   const collapsibleElement = document.getElementById("collapsibleOptionsElement");
   collapsibleElement.classList.toggle("expanded");
@@ -997,3 +1004,43 @@ function toggleOptionsCollapse() {
   }
 }
 toggleOptionsCollapse()
+
+function toggleLogsCollapse() {
+  const collapsibleElement = document.getElementById("collapsibleLogsElement");
+  collapsibleElement.classList.toggle("expanded");
+
+  if (collapsibleElement.classList.contains("expanded")) {
+    collapsibleElement.style.display = "flex";
+  } else {
+    setTimeout(() => (collapsibleElement.style.display = "none"), 300);
+  }
+}
+toggleLogsCollapse()
+
+//************************************************* Loading JSON *************************************************
+function existingSave() {
+  if (localStorage.getItem('savedGame')) {
+    return true
+  } else {
+    return false
+  }
+}
+
+async function loadDefaultJson() {
+
+  let container = document.getElementById("logsContainer")
+  let json
+  await fetch("savedGame.json")
+  .then(response => response.json())
+  .then(data => json = data)
+  .catch(error => console.error(error));
+
+  //console.log(json)
+  let message = "<p class='logsText'>"
+  message = message + `Dinero Restante: ${json.currentMoney}$<br>`
+  message = message + `Dinero Ganado: <span class="hilight-green">${json.acquiredMoney}$</span><br>`
+  message = message + `Dinero Perdido: <span class="hilight-red">${json.lostMoney}$</span><br>`
+  message = message + "</p>"
+
+  container.innerHTML = message;
+}

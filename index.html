@@ -15,7 +15,6 @@
   <body>
     <main class="index-home flex-dir-column absolute-center">
       <div id="tableParent">
-        <h1>¡Hace click en el tablero para apostar!</h1>
 
         <!-- Player Money Slider -->
         <div class="slidecontainer">
@@ -96,7 +95,7 @@
         <!-- End of New Roulette Object -->
 
         <!-- Roulette Buttons -->
-        <div class="flex-dir-row margin-ten">
+        <div class="flex-dir-row margin-vh">
           <button type="button" class="rouletteButton" id="rouletteButton">
             <p>¡Girar Ruleta!</p>
           </button>
@@ -106,11 +105,13 @@
         </div>
         <!-- End of Roulette Buttons -->
 
-        <div type="button" class="optionsButton" id="optionsButton">
+        <div class="button-container">
+          <div type="button" class="optionsButton" id="optionsButton"></div>
+          <div type="button" class="logsButton" id="logsButton"></div>
+          <div type="button" class="infoButton" id="infoButton"></div>
         </div>
 
-        <div id="collapsibleOptionsElement" class="expanded accesibilityControlsContainer">
-
+        <div id="collapsibleOptionsElement" class="expanded collapsibleElement">
           <div class="slidecontainer">
             <p>Tamaño</p>
             <input
@@ -127,6 +128,13 @@
           </button>
         </div>
 
+        <div id="collapsibleLogsElement" class="expanded collapsibleElement">
+          <div class="logsContainer" id="logsContainer">
+            <p>test</p>
+          </div><button type="button" class="rouletteButton" id="loadLogsButton">
+            <p>Cargar Registros</p>
+          </button>
+        </div>
       </div>
     </main>
     <!-- Scripts -->

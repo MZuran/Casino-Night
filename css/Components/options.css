@@ -1,0 +1,20 @@
+.optionsButton {
+  background-image: url(../media/images/options.png);
+}
+.optionsButton:hover {
+  transform: scale(1.2) rotate(90deg);
+}
+
+#collapsibleOptionsElement {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+#collapsibleOptionsElement.expanded {
+  max-height: 1000px; /* Set a sufficiently large value to accommodate content */
+  opacity: 1;
+}
+
+/*# sourceMappingURL=options.css.map */

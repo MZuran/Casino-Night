@@ -65,6 +65,10 @@ p {
   margin: 10px;
 }
 
+.margin-vh {
+  margin: 3vh;
+}
+
 .margin-thirty {
   margin: 30px;
 }
@@ -93,6 +97,67 @@ p {
   color: #313338;
   font-family: "font-2", sans-serif;
   text-shadow: 1px 1px black;
+}
+
+.infoButton {
+  background-image: url(../media/images/help.png);
+}
+.infoButton:hover {
+  transform: scale(1.2) rotate(12deg);
+}
+
+.logsButton {
+  background-image: url(../media/images/list.png);
+}
+.logsButton:hover {
+  transform: scale(1.2) rotate(360deg);
+}
+
+#collapsibleLogsElement {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+#collapsibleLogsElement.expanded {
+  max-height: 1000px; /* Set a sufficiently large value to accommodate content */
+  opacity: 1;
+}
+
+.logsContainer {
+  background-color: rgba(49, 51, 56, 0.5);
+  padding: 1vw;
+  border-radius: 1vw;
+}
+
+.logsText {
+  font-family: "font-1", sans-serif;
+  font-size-adjust: inherit;
+}
+
+.button-container {
+  position: fixed;
+  bottom: 1vw;
+  left: 1vw;
+  display: flex;
+  flex-direction: row;
+}
+.button-container div {
+  margin-right: 1vw;
+  transition: 0.5s;
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+  /* border: none; */
+  width: 2.5vw;
+  height: 2.5vw;
+  min-width: 30px;
+  min-height: 30px;
+  background-size: cover;
+}
+.button-container div:hover {
+  transition: 0.5s;
+  filter: invert(20%) sepia(6%) saturate(694%) hue-rotate(185deg) brightness(89%) contrast(93%);
 }
 
 .roulette-container {
@@ -483,39 +548,10 @@ p {
 }
 
 .optionsButton {
-  color: rgba(0, 0, 0, 0);
-  background-color: rgba(0, 0, 0, 0);
-  /* border: none; */
-  width: 2.5vw;
-  height: 2.5vw;
-  min-width: 30px;
-  min-height: 30px;
-  background-size: cover;
   background-image: url(../media/images/options.png);
-  position: fixed;
-  bottom: 1vw;
-  left: 1vw;
-  transition: 0.5s;
 }
 .optionsButton:hover {
-  transition: 0.5s;
-  transform: rotate(90deg);
-  filter: invert(20%) sepia(6%) saturate(694%) hue-rotate(185deg) brightness(89%) contrast(93%);
-}
-
-.optionsButtonContainer {
-  width: 25px;
-  height: 25px;
-}
-
-.accesibilityControlsContainer {
-  width: 80%;
-  margin: 1vw;
-  flex-direction: column !important;
-  align-items: center !important;
-  display: flex !important;
-  border-radius: 30px;
-  background-color: rgba(106, 153, 78, 0.25);
+  transform: scale(1.2) rotate(90deg);
 }
 
 #collapsibleOptionsElement {
@@ -552,6 +588,17 @@ p {
 
 *::-webkit-scrollbar-thumb:active {
   background-color: #62A34B;
+}
+
+.collapsibleElement {
+  width: 80%;
+  margin: 1vw;
+  padding: 1vw;
+  flex-direction: column !important;
+  align-items: center !important;
+  display: flex !important;
+  border-radius: 30px;
+  background-color: rgba(106, 153, 78, 0.25);
 }
 
 .index-home {

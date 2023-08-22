@@ -1,0 +1,30 @@
+.logsButton {
+    background-image: url(../media/images/list.png);
+
+    &:hover {
+        transform: scale(1.2) rotate(360deg);
+    }
+  }
+
+  #collapsibleLogsElement {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  
+  #collapsibleLogsElement.expanded {
+    max-height: 1000px; /* Set a sufficiently large value to accommodate content */
+    opacity: 1;
+  }
+
+.logsContainer {
+    background-color: rgba($color: $color-black, $alpha: 0.5);
+    padding: 1vw;
+    border-radius: 1vw;
+}
+
+.logsText {
+    font-family: 'font-1', sans-serif;
+    font-size-adjust: inherit;
+}

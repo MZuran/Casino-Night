@@ -10,14 +10,18 @@
 @import './Mixins/effects.scss';
 
 //Components
+@import './Components/information.scss';
+@import './Components/logs.scss';
+@import './Components/buttons.scss';
 @import './Components/footer.scss';
 @import './Components/header.scss';
 @import './Components/roulette.scss';
 @import './Components/grid-roulette.scss';
 @import './Components/slider.scss';
 @import './Components/toastify-alerts.scss';
-@import './Components/accesibility-controls.scss';
+@import './Components/options.scss';
 @import './Components/scrollbar.scss';
+@import './Components/collapsible-elements.scss';
 
 //Pages
 @import './Pages/index.scss';

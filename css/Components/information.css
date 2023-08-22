@@ -1,0 +1,8 @@
+.infoButton {
+  background-image: url(../media/images/help.png);
+}
+.infoButton:hover {
+  transform: scale(1.2) rotate(12deg);
+}
+
+/*# sourceMappingURL=information.css.map */

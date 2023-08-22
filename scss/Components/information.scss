@@ -1,0 +1,7 @@
+.infoButton {
+    background-image: url(../media/images/help.png);
+
+    &:hover {
+        transform: scale(1.2) rotate(12deg);
+    }
+  }
