@@ -5,3 +5,13 @@ function validAmount(money, usedPredefinedAmount) {
     }
     return true
   }
+
+  updateInfoAnimation()
+function updateInfoAnimation() {
+  //'infoButton'
+  if (JSON.parse(localStorage.getItem('readInfo'))) {
+    document.getElementById('infoButton').classList = "infoButton"
+  } else {
+    document.getElementById('infoButton').classList = "infoButton sparkling-icon"
+  }
+}

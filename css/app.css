@@ -99,6 +99,11 @@ p {
   text-shadow: 1px 1px black;
 }
 
+.alertify .ajs-dialog {
+  background-color: rgb(56, 102, 65);
+  border-radius: 20px;
+}
+
 .infoButton {
   background-image: url(../media/images/help.png);
 }
@@ -640,7 +645,7 @@ p {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(33deg) brightness(101%) contrast(105%);
   }
 }
-.animated-icon {
+.sparkling-icon {
   animation: idleAnimation 2s infinite, sparkleAnimation 1s infinite alternate;
 }
 

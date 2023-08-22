@@ -5,6 +5,17 @@ optionsButton.addEventListener('click', function () {
   toggleOptionsCollapse()
 })
 
+let infoButton = document.getElementById('infoButton')
+infoButton.addEventListener('click', function () {
+  localStorage.setItem('readInfo', JSON.stringify(true))
+  updateInfoAnimation()
+
+  let content = "<h3>¡Bienvenido a la mesa de ruleta!</h3><br>" +
+  "Todas las partidas se empiezan con 1000$. Para apostar, usá el <b>slider</b> de arriba de el tablero para seleccionar una cantidad y luego, ¡hacé click en el <b>tablero</b>!<br><br>" +
+  "¡Recordá mirar la <b>configuración ⚙️</b> y el <b>historial de apuestas 📋</b> para divertirte más!"
+  alertify.alert(content).set('basic', true); 
+})
+
 let seeLogs = false
 let logsButton = document.getElementById('logsButton')
 logsButton.addEventListener('click', function () {
@@ -23,6 +34,10 @@ resetButton.addEventListener('click', function () {
   newLogObject.currentMoney = 1000
   localStorage.setItem('gameLog', JSON.stringify(newLogObject))
   loadJsonLog()
+  toggleLogsCollapse()
+
+  localStorage.setItem('readInfo', JSON.stringify(false))
+  updateInfoAnimation()
 })
 
 let exampleLogs = document.getElementById('loadExampleLogs')
