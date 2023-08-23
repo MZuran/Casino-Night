@@ -26,7 +26,7 @@ function existingSave() {
       json = gameLog
     }
 
-    if (!gameLog) {
+    if (!gameLog && !isLocalGame) {
       json = emptySavedGame()
       json.currentMoney = 1000
       localStorage.setItem('playerMoney', JSON.stringify(1000))
