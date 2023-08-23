@@ -114,9 +114,6 @@ const roulette = {
     winnerBet
   ) {
 
-    //Keyword OBJECTARRAY
-    addBetToSpunNumberLog([betType,bettedAmount,bettedParameter], winnerBet)
-
     if (winnerBet) {
       toastifyAlert(
         `La bola cae en ${rouletteNumber}\nLa apuesta de tipo ${betType} al ${bettedParameter} ganó ${
@@ -132,6 +129,9 @@ const roulette = {
       );
     }
     removeAllSelectedSquareClasses();
+
+    //Keyword OBJECTARRAY
+    addBetToSpunNumberLog([betType,bettedAmount,bettedParameter], winnerBet)
   },
 
   sumSecondParameters: function (betList) {
